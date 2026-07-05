@@ -1,2 +1,14 @@
 
 @import "tailwindcss";
+
+@theme{
+
+    --color-brand-navy: #1A2B4C;
+    --color-brand-gold: #D4AF37;
+    --font-headline : "Oswald",sans-serif;
+    --font-body: "Inter", sans-serif;
+}
+
+a{
+    cursor :pointer;
+}
