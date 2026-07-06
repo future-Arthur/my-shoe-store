@@ -6,7 +6,14 @@ export function HomePage() {
 
 
     return (
-        <>
+        <section className="relative h-screen over-flow-hidden" >
+            <video autoPlay
+            loop
+            muted
+            playsInline
+            className = "absolute inset-0 w-full h-full object-cover -z-10">
+                <source src="/landingpagevideo.mp4" />
+            </video>
             <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[1px] md:flex-row md:justify-between ">
                 <div className="flex justify-start items-center gap-2 ">
                     <a className="flex items-center gap-2 cursor-pointer" href="/">
@@ -15,14 +22,15 @@ export function HomePage() {
                     </a>
                 </div>
 
-                <div className="flex justify-between md:gap-20 lg:gap-50 xl:gap-105 p-5">
+                <div className="flex justify-between md:gap-2 lg:gap-30 xl:gap-80 p-5">
                     <div className="flex items-center md:hidden">
                         <img src="../../public/images/menu.png" />
                     </div>
-                    <div className="flex text-white gap-10 items-center hidden md:flex xl:gap-30">
-                        <a>MEN</a>
-                        <a>WOMEN</a>
-                        <a>KIDS</a>
+                    <div className="flex text-white gap-10 items-center hidden md:hidden lg:flex lg:gap-20 xl:gap-30">
+                        <a href= "/">FEATURED</a>
+                        <a href= "/">MEN</a>
+                        <a href = "/">WOMEN</a>
+                        <a href = "/">KIDS</a>
                     </div>
 
                     <div className="text-white items-center flex xl:mr-10">
@@ -55,7 +63,22 @@ export function HomePage() {
                     </div>
                 </div>
             </nav>
-        </>
+            <div className = "text-center mt-100 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
+               <h1 className = "text-[65px] font-bold  font-headline md:text-110 xl:text-[120px]">
+                <span className = "transiton-all duration-300 hover:text-brand-gold">NO </span>
+                <span className = "transiton-all duration-300 hover:text-brand-gold">LIMITS. </span>
+                <span className = "transiton-all duration-300 hover:text-brand-gold">JUST </span>   
+                <span className="text-brand-gold duration-300 hover:text-brand-navy" > STEPS</span></h1>
+               <h2 className = "text-[12px] font-bold lg:text-[20px]">Footwear designed for every story, every build, and every single steps</h2>
+            </div>
+            <div className="flex justify-center mt-10 "> 
+                <span className = "bg-brand-gold px-3 py-2 rounded-[20px] text-white font-body hover:bg-amber-400">
+                    <button className="cursor-pointer ">Shop Now</button>
+                </span>
+                
+            </div>
+            
+        </section>
 
     )
 }
