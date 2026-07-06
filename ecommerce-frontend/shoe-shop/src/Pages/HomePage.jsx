@@ -1,4 +1,5 @@
-
+import {Header} from './Components/Header'
+import {Link} from 'react-router-dom'
 import '../index.css'
 
 
@@ -14,55 +15,8 @@ export function HomePage() {
             className = "absolute inset-0 w-full h-full object-cover -z-10">
                 <source src="/landingpagevideo.mp4" />
             </video>
-            <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[1px] md:flex-row md:justify-between ">
-                <div className="flex justify-start items-center gap-2 ">
-                    <a className="flex items-center gap-2 cursor-pointer" href="/">
-                        <img className="w-15 h-15 rounded-[50%]" src="../../public/images/shoeLog.jpg" />
-                        <span className="text-[35px] text-white font-bold ">SHOE'S<span className="text-brand-gold">HOP</span></span>
-                    </a>
-                </div>
-
-                <div className="flex justify-between md:gap-2 lg:gap-30 xl:gap-80 p-5">
-                    <div className="flex items-center md:hidden">
-                        <img src="../../public/images/menu.png" />
-                    </div>
-                    <div className="flex text-white gap-10 items-center hidden md:hidden lg:flex lg:gap-20 xl:gap-30">
-                        <a href= "/">FEATURED</a>
-                        <a href= "/">MEN</a>
-                        <a href = "/">WOMEN</a>
-                        <a href = "/">KIDS</a>
-                    </div>
-
-                    <div className="text-white items-center flex xl:mr-10">
-                        <div className="flex bg-white items-center rounded-[10px] 
-                            " >
-                            <span className="m-2"
-                            ><img src="../../public/images/search.png" /></span>
-                            <input type="text"
-
-                                placeholder="find shoes"
-                                spellCheck="false"
-                                className="bg-white text-black rounded  transition-all 
-                                 duration-500  outline-none text-sm w-60"
-                            />
-                        </div>
-
-                        <div className="relative flex gap-4 ml-3 xl:ml-5">
-                            <button className="cursor-pointer">
-                                <svg className=" cursor-pointer" xmlns="http://www.w3.org/2000/svg"
-                                    width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                    className="lucide lucide-shopping-bag-icon lucide-shopping-bag">
-                                    <path d="M16 10a4 4 0 0 1-8 0" />
-                                    <path d="M3.103 6.034h17.794" />
-                                    <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
-                                </svg>
-                            </button>
-                            <span className="absolute -top-[12px] -right-[10px] bg-red-500 text-white text-s rounded-full h-6 w-6 flex items-center justify-center">3</span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Header />
+           
             <div className = "text-center mt-100 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
                <h1 className = "text-[65px] font-bold  font-headline md:text-110 xl:text-[120px]">
                 <span className = "transiton-all duration-300 hover:text-brand-gold">NO </span>
@@ -73,7 +27,7 @@ export function HomePage() {
             </div>
             <div className="flex justify-center mt-10 "> 
                 <span className = "bg-brand-gold px-3 py-2 rounded-[20px] text-white font-body hover:bg-amber-400">
-                    <button className="cursor-pointer ">Shop Now</button>
+                    <Link to="/products"><button className="cursor-pointer" >Shop Now</button></Link>
                 </span>
                 
             </div>
