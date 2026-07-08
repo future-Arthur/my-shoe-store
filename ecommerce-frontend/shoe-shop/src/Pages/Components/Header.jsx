@@ -36,7 +36,8 @@ export function Header(){
                         </div>
 
                         <div className="relative flex gap-4 ml-3 xl:ml-5">
-                            <button className="cursor-pointer">
+                            <Link to="/checkout">
+                                <button className="cursor-pointer">
                                 <svg className=" cursor-pointer" xmlns="http://www.w3.org/2000/svg"
                                     width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -47,6 +48,8 @@ export function Header(){
                                 </svg>
                             </button>
                             <span className="absolute -top-[12px] -right-[10px] bg-red-500 text-white text-s rounded-full h-6 w-6 flex items-center justify-center">3</span>
+                            </Link>
+                            
                         </div>
                     </div>
                 </div>
