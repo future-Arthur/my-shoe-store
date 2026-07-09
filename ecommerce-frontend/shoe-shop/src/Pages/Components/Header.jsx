@@ -5,14 +5,14 @@ export function Header() {
         <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[1px] md:flex-row md:justify-between ">
             <div className="flex justify-start items-center gap-2 ">
                 <Link className="flex items-center gap-2 cursor-pointer" to="/">
-                    <img className="w-15 h-15 rounded-[50%]" src="../../public/images/shoeLog.jpg" />
+                    <img className="w-15 h-15 rounded-[50%]" src="/images/icons/shoeLog.jpg" />
                     <span className="text-[35px] text-white font-bold ">SHOE'S<span className="text-brand-gold">HOP</span></span>
                 </Link>
             </div>
 
-            <div className="flex justify-between md:gap-2 lg:gap-30 xl:gap-80 p-5">
+            <div className="flex justify-between md:gap-2 xl:gap-80 p-5">
                 <div className="flex items-center md:hidden">
-                    <img src="/images/menu.png" />
+                    <img src="/images/icons/menu.png" />
                 </div>
                 <div className="flex text-white gap-10 items-center hidden md:hidden lg:flex lg:gap-20 xl:gap-30">
                     <Link to="/products">FEATURED</Link>
@@ -25,7 +25,7 @@ export function Header() {
                     <div className="flex bg-white items-center rounded-[10px] 
                             " >
                         <span className="m-2"
-                        ><img src="/images/search.png" /></span>
+                        ><img src="/images/icons/search.png" /></span>
                         <input type="text"
 
                             placeholder="find shoes"
@@ -35,7 +35,7 @@ export function Header() {
                         />
                     </div>
 
-                    <div className="relative flex gap-4 ml-3 xl:ml-5">
+                    <div className="relative flex gap-4 ml-3 xl:ml-5 ">
                         <Link to="/checkout">
                             <svg  className="lucide lucide-shopping-bag-icon lucide-shopping-bag cursor-pointer"
                                 xmlns="http://www.w3.org/2000/svg"
