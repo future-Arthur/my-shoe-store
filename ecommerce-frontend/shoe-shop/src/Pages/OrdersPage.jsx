@@ -39,7 +39,7 @@ export function OrdersPage() {
 
 
                         </div>
-                            <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
+                        <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
                             <div>
                                 <div className="flex flex-col gap-3">
                                     <span>Order Placed : November 15</span>
@@ -70,7 +70,7 @@ export function OrdersPage() {
 
                         </div>
 
-                            <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
+                        <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
                             <div>
                                 <div className="flex flex-col gap-3">
                                     <span>Order Placed : November 15</span>
@@ -101,7 +101,7 @@ export function OrdersPage() {
 
                         </div>
 
-                            <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
+                        <div className="flex flex-col gap-10 bg-white rounded-[10px] p-5">
                             <div>
                                 <div className="flex flex-col gap-3">
                                     <span>Order Placed : November 15</span>
@@ -131,7 +131,7 @@ export function OrdersPage() {
 
 
                         </div>
-                        
+
 
 
 
