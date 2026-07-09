@@ -33,6 +33,18 @@ export const Product = sequelize.define('Product', {
       this.setDataValue('keywords', val.join(','));
     }
   },
+  size: {
+    type: DataTypes.JSON, // Dahil object ang structure ng size mo
+    allowNull: true
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  colour: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   createdAt: {
     type: DataTypes.DATE(3)
   },
