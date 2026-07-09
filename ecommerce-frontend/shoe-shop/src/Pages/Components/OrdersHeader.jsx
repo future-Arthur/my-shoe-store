@@ -6,7 +6,7 @@ export function OrdersHeader(){
         <nav className="bg-brand-navy flex font-headline p-[1px] justify-between items-center ">
                 <div className="flex justify-start gap-2 hidden md:flex">
                     <Link className="flex items-center gap-2 cursor-pointer" to="/">
-                        <img className="w-15 h-15 rounded-[50%]" src="../../public/images/shoeLog.png" />
+                        <img className="w-15 h-15 rounded-[50%]" src="/images/icons/shoeLog.jpg" />
                         <span className="text-[35px] text-white font-bold ">SHOE'S<span className="text-brand-gold">HOP</span></span>
                     </Link>
                 </div>
