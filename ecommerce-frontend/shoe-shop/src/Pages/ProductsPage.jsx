@@ -5,7 +5,7 @@ import { moneyFormat } from '../Utils/moneyFormat'
 
 
 
-export function ProductsPage() {
+export function ProductsPage({cart, loadCart}) {
 
     const [products, setProducts] = useState([]);
     const [selectedSize, setSelectedSize] = useState({});
@@ -14,8 +14,6 @@ export function ProductsPage() {
         const response = await axios.get('/api/products')
         setProducts(response.data)
     }
-
-
 
     useEffect(() => {
 
@@ -26,7 +24,8 @@ export function ProductsPage() {
 
     return (
         <>
-            <Header />
+            <Header cart={cart}/>
+
             <div className=" bg-brand-medwhite grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 font-body 
                 overflow-x-hidden text-brand-navy">
 
@@ -44,6 +43,7 @@ export function ProductsPage() {
                             quantity: 1,
                             size: sizeToSubmit,
                         })
+                        await loadCart();
                     }
                     return (
                         <div key={product.id} className="ml-5 flex flex-col bg-white w-85 h-auto gap-2 mt-5 rounded-[20px] 
@@ -101,14 +101,6 @@ export function ProductsPage() {
 
                     )
                 })}
-
-
-
-
-
-
-
-
 
             </div>
 

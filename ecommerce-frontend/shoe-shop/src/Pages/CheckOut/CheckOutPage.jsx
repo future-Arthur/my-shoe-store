@@ -7,16 +7,12 @@ import { CheckOutHeader } from '../Components/CheckOutHeader';
 import { PaymentSummary } from './PaymentSummary'
 import { moneyFormat } from '../../Utils/moneyFormat'
 
-export function CheckOutPage() {
-    const [cart, setCart] = useState([]);
+export function CheckOutPage({cart}) {
+    
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSummary] = useState(null);
 
-    const fetchCartData = async () => {
-        const response = await axios.get('/api/cart-items?expand=product')
-        setCart(response.data)
-        console.log(response.data)
-    }
+    
     const fetchDeliveryOption = async () => {
         const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
         setDeliveryOptions(response.data)
@@ -30,14 +26,14 @@ export function CheckOutPage() {
     }
 
     useEffect(() => {
-        fetchCartData();
+
         fetchDeliveryOption();
         fetchPaymentData();
     }, [])
     return (
 
         <>
-            <CheckOutHeader />
+            <CheckOutHeader cart={cart}/>
 
             <div className="grid grid-cols-1 md:flex font-body text-brand-navy">
                 <div className=" flex-1 w-full">
@@ -45,7 +41,7 @@ export function CheckOutPage() {
 
                         {cart.map((cartItem) => {
                             return (
-                                <div key={cartItem.productId} className="flex flex-col items-center justify-center 
+                                <div key={`${cartItem.productId}-${cartItem.size}`} className="flex flex-col items-center justify-center 
                                     w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover hover:shadow-xl">
                                     <hr className=" border-t-2 border-gray-300 " />
                                     <div className="text-center m-5 font-bold">

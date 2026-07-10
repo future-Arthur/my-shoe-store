@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import '../index.css'
 
 
-export function HomePage() {
+export function HomePage({cart}) {
 
 
     return (
@@ -15,7 +15,7 @@ export function HomePage() {
             className = "absolute inset-0 w-full h-full object-cover -z-10">
                 <source src="/landingpagevideo.mp4" />
             </video>
-            <Header />
+            <Header cart={cart}/>
            
             <div className = "text-center mt-100 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
                <h1 className = "text-[65px] font-bold  font-headline md:text-110 xl:text-[120px]">
