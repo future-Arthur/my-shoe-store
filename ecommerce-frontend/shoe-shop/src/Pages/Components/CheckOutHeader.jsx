@@ -1,7 +1,11 @@
 
 import {Link} from 'react-router-dom'
+import {calculateCartQuantity} from '../../Utils/calculateCartQuantity'
 
-export function CheckOutHeader(){
+export function CheckOutHeader({cart}){
+    
+     const totalQuantity = calculateCartQuantity(cart)
+ 
     return(
           <nav className="bg-brand-navy flex font-headline p-[1px] justify-between items-center ">
                 <div className="flex justify-start gap-2 hidden md:flex">
@@ -13,7 +17,7 @@ export function CheckOutHeader(){
 
                 <div className=" flex items-center text-[20px] text-white lg:text-[28px]">
                     <h2 className="mr-2"> Shopping Bag</h2>
-                    <span className="text-brand-gold"> (3)</span>
+                    <span className="text-brand-gold"> ({totalQuantity})</span>
                 </div>
                 
                 <div className="flex items-center">

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import {calculateCartQuantity} from '../../Utils/calculateCartQuantity'
 
-export function Header() {
+export function Header({cart}) {
+
+    const totalQuantity = calculateCartQuantity(cart);
+    
     return (
         <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[1px] md:flex-row md:justify-between ">
             <div className="flex justify-start items-center gap-2 ">
@@ -48,7 +52,7 @@ export function Header() {
                             </svg>
                             <span className="absolute -top-[12px] -right-[10px] bg-red-500 
                                 text-white text-s rounded-full h-6 w-6 
-                                flex items-center justify-center">3</span>
+                                flex items-center justify-center">{totalQuantity}</span>
                         </Link>
 
                     </div>
