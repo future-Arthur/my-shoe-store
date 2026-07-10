@@ -4,7 +4,8 @@ import axios from 'axios';
 import dayjs from 'dayjs'
 
 import { CheckOutHeader } from '../Components/CheckOutHeader';
-import {PaymentSummary} from './PaymentSummary'
+import { PaymentSummary } from './PaymentSummary'
+import { moneyFormat } from '../../Utils/moneyFormat'
 
 export function CheckOutPage() {
     const [cart, setCart] = useState([]);
@@ -22,7 +23,7 @@ export function CheckOutPage() {
         console.log(response.data)
     }
 
-    const fetchPaymentData = async ()=>{
+    const fetchPaymentData = async () => {
         const response = await axios.get('/api/payment-summary')
         setPaymentSummary(response.data);
         console.log(response.data);
@@ -44,36 +45,35 @@ export function CheckOutPage() {
 
                         {cart.map((cartItem) => {
                             return (
-                                <div key={cartItem.productId} className="grid grid-cols-1 justify-center w-full bg-white mt-5 p-5">
+                                <div key={cartItem.productId} className="flex flex-col items-center justify-center w-full bg-white mt-5 px-5">
                                     <hr className=" border-t-2 border-gray-300 " />
                                     <div className="text-center m-5 font-bold">
-                                        Delivery Date : November 21, 2099
+                                        Delivery Date :{dayjs(deliveryOptions.estimatedDeliveryTimeMs).format('MMMM D')}
                                     </div>
                                     <div className="flex justify-center">
-                                        <img src={cartItem.product.image} className="h-80 m-1 rounded-[20px]" />
+                                        <img src={cartItem.product.image} className="  h-80 w-70 object-fit:contain m-1 rounded-[20px] " />
                                     </div>
                                     <div className="font-bold text-center m-5 text-[18px]">
                                         {cartItem.product.name}
                                     </div>
 
                                     <div className="flex justify-center gap-1">
-                                        <div className="grid grid-cols">
+                                        <div className="grid grid-cols w-40 h-20 gap-3">
                                             <span className="font-bold">
                                                 Other Info
                                             </span>
-                                            <div >
-                                                Price : <span className="font-bold"> {cartItem.product.priceCents}</span>
-                                            </div>
-                                            <div>
+                                            <p>
+                                                Price : <span className="font-bold"> {moneyFormat(cartItem.product.priceCents)}</span>
+                                            </p>
+                                            <p>
                                                 size : <span className="font-bold">{cartItem.size}</span>
-                                            </div>
-                                            <div>
+                                            </p>
+                                            <p>
                                                 Colour : <span className="font-bold">{cartItem.product.colour}</span>
-                                            </div>
-                                            <div >
+                                            </p>
+                                            <p>
                                                 Quantity : <span className="font-bold">{cartItem.quantity}</span>
-                                            </div>
-
+                                            </p>
                                         </div>
 
                                         <div className="grid gap-[10px]">
@@ -82,13 +82,13 @@ export function CheckOutPage() {
                                                 let stringShipping = "Free Shipping"
 
                                                 if (option.priceCents > 0) {
-                                                    stringShipping = (`₱${(option.priceCents / 10).toFixed(2)} - Shipping `)
+                                                    stringShipping = (`${moneyFormat(option.priceCents)} - Shipping `)
                                                 }
 
                                                 return (
                                                     <div key={option.id} className="flex ">
-                                                        <input type="radio" onChange = {()=>{}}
-                                                         checked = {cartItem.deliveryOptionId === option.id} />
+                                                        <input type="radio" onChange={() => { }}
+                                                            checked={cartItem.deliveryOptionId === option.id} />
                                                         <div className="ml-3">
                                                             <div className="font-bold">
                                                                 {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
@@ -100,10 +100,7 @@ export function CheckOutPage() {
                                                     </div>
                                                 )
                                             })}
-
-
                                         </div>
-
                                     </div>
 
                                     <div className="flex justify-center mt-8">
@@ -118,8 +115,8 @@ export function CheckOutPage() {
                         })}
                     </div>
                 </div>
-                        {<PaymentSummary paymentSummary = {paymentSummary}/>}
-       
+                {<PaymentSummary paymentSummary={paymentSummary} />}
+
 
 
             </div>

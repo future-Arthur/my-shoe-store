@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Header } from './Components/Header'
+import {moneyFormat} from '../Utils/moneyFormat'
 
 
 
@@ -31,9 +32,9 @@ export function ProductsPage() {
                 {products.map((product) => {
 
                     return (
-                        <div key={product.id} className="ml-5 flex flex-col bg-white w-88 gap-2 mt-5 rounded-[20px] group">
+                        <div key={product.id} className="ml-5 flex flex-col bg-white w-88 h-170 gap-2 mt-5 rounded-[20px] group">
                             <div className="flex justify-center mt-5 relative">
-                                <img src={product.image} className="h-100" />
+                                <img src={product.image} className="h-100 w-80" />
                                 <button className="cursor-pointer absolute w-10 h-20 lg:opacity-0 transition-opacity duration-1000 lg:group-hover:opacity-100">
                                     <img src="/images/icons/heart-regular.png" className="h-10" /></button>
 
@@ -66,7 +67,7 @@ export function ProductsPage() {
                                 <img src={`/images/ratings/rating-${product.rating.stars * 10}.png`} className="h-6" />
                             </div>
                             <div className="flex justify-center m-0 text-brand-navy font-bold text-[20px]">
-                                ₱{product.priceCents}
+                                {moneyFormat(product.priceCents)}
                             </div>
                             <div className="flex flex-row justify-center opacity-0" >
                                 Item Added

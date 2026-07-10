@@ -1,4 +1,4 @@
-
+import {moneyFormat} from '../../Utils/moneyFormat'
 
 
 export function PaymentSummary({paymentSummary}) {
@@ -13,27 +13,27 @@ export function PaymentSummary({paymentSummary}) {
                             </div>
                             <div className="flex justify-between">
                                 <span className="opacity-80">Items ({paymentSummary.totalItems}) :</span>
-                                <span className="font-bold mr-5">₱{paymentSummary.productCostCents}</span>
+                                <span className="font-bold mr-5">{moneyFormat(paymentSummary.productCostCents)}</span>
                             </div>
                             <hr className=" border-t-2 border-gray-300 " />
                             <div className="flex justify-between">
                                 <span className="opacity-80">Shipping : </span>
-                                <span className="font-bold mr-5"> ₱{(paymentSummary.shippingCostCents/10).toFixed(2)}</span>
+                                <span className="font-bold mr-5"> {moneyFormat(paymentSummary.shippingCostCents)}</span>
                             </div>
                             <hr className=" border-t-2 border-gray-300" />
                             <div className="flex justify-between">
                                 <span className="opacity-80">Total before Tax :</span>
-                                <span className="font-bold mr-5"> ₱{(paymentSummary.totalCostBeforeTaxCents/10).toFixed(2)} </span>
+                                <span className="font-bold mr-5"> {moneyFormat(paymentSummary.totalCostBeforeTaxCents)} </span>
                             </div>
                             <hr className=" border-t-2 border-gray-300 " />
                             <div className="flex justify-between">
                                 <span className="opacity-80">Estimated Tax :</span>
-                                <span className="font-bold mr-5">₱{(paymentSummary.taxCents/10).toFixed(2)} </span>
+                                <span className="font-bold mr-5">{moneyFormat(paymentSummary.taxCents)} </span>
                             </div>
                             <hr className=" border-t-2 border-gray-300 " />
                             <div className="flex justify-between">
                                 <span className="font-bold text-[20px]">Order Total :  </span>
-                                <span className="font-bold mr-5 text-[20px]"> {paymentSummary.totalCostCents} </span>
+                                <span className="font-bold mr-5 text-[20px]"> {moneyFormat(paymentSummary.totalCostCents)} </span>
                             </div>
                             <hr className=" border-t-2 border-gray-300 " />
                             <div className="text-center">
