@@ -32,13 +32,15 @@ export function ProductsPage() {
                 {products.map((product) => {
 
                     return (
-                        <div key={product.id} className="ml-5 flex flex-col bg-white w-88 h-170 gap-2 mt-5 rounded-[20px] group">
+                        <div key={product.id} className="ml-5 flex flex-col bg-white w-85 h-auto gap-2 mt-5 rounded-[20px] 
+                            group hover:bg-brand-navy hover:text-white transition-all duration-800 hover:shadow-lg">
                             <div className="flex justify-center mt-5 relative">
-                                <img src={product.image} className="h-100 w-80" />
+                                <img src={product.image} className="h-90 w-70" />
                                 <button className="cursor-pointer absolute w-10 h-20 lg:opacity-0 transition-opacity duration-1000 lg:group-hover:opacity-100">
                                     <img src="/images/icons/heart-regular.png" className="h-10" /></button>
 
-                                <div className=" absolute bottom-3 lg:opacity-0 transition-opacity duration-1000 lg:group-hover:opacity-100 flex gap-1">
+                                <div className=" absolute bottom-3 lg:opacity-0 transition-opacity duration-1000 
+                                    lg:group-hover:opacity-100 flex gap-1 text-brand-navy">
                                     <span className="cursor-pointer opacity-50 flex items-center mr-5">size</span>
                                     {product.size && product.size.map((size) => {
                                         const pickSize = () => {
@@ -57,7 +59,7 @@ export function ProductsPage() {
 
                             </div>
 
-                            <div className="flex justify-center text-brand-navy px-4 font-bold text-[18px]">
+                            <div className="flex justify-center  px-4 font-bold text-[18px]">
                                 {product.name}
                             </div>
                             <div className="opacity-50 text-center ">
@@ -66,7 +68,7 @@ export function ProductsPage() {
                             <div className="flex justify-center">
                                 <img src={`/images/ratings/rating-${product.rating.stars * 10}.png`} className="h-6" />
                             </div>
-                            <div className="flex justify-center m-0 text-brand-navy font-bold text-[20px]">
+                            <div className="flex justify-center m-0  font-bold text-[20px]">
                                 {moneyFormat(product.priceCents)}
                             </div>
                             <div className="flex flex-row justify-center opacity-0" >

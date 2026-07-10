@@ -45,7 +45,8 @@ export function CheckOutPage() {
 
                         {cart.map((cartItem) => {
                             return (
-                                <div key={cartItem.productId} className="flex flex-col items-center justify-center w-full bg-white mt-5 px-5">
+                                <div key={cartItem.productId} className="flex flex-col items-center justify-center 
+                                    w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover hover:shadow-xl">
                                     <hr className=" border-t-2 border-gray-300 " />
                                     <div className="text-center m-5 font-bold">
                                         Delivery Date :{dayjs(deliveryOptions.estimatedDeliveryTimeMs).format('MMMM D')}
