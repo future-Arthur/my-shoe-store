@@ -1,9 +1,23 @@
-import { useState } from 'react'
-import { moneyFormat } from '../../Utils/moneyFormat'
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import { moneyFormat } from '../../Utils/moneyFormat';
 
 
-export function PaymentSummary({ paymentSummary }) {
+export function PaymentSummary({cart}) {
+    const [paymentSummary, setPaymentSummary] = useState(null);
     const [isExpanded, setIsExpanded] = useState(false);
+
+        const fetchPaymentData = async () => {
+        const response = await axios.get('/api/payment-summary')
+        setPaymentSummary(response.data);
+    }
+    
+     useEffect(() => {
+        fetchPaymentData();
+    }, [cart])
+
+    
+
     return (
         <div className="w-full md:w-[20%] relative mb-40">
             {paymentSummary && (
