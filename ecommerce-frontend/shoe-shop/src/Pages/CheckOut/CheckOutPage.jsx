@@ -5,12 +5,12 @@ import dayjs from 'dayjs'
 
 import { CheckOutHeader } from '../Components/CheckOutHeader';
 import { PaymentSummary } from './PaymentSummary'
+import { DeliveryOptions } from './DeliveryOptions'
 import { moneyFormat } from '../../Utils/moneyFormat'
 
-export function CheckOutPage({cart, loadCart}) {
-    
+export function CheckOutPage({ cart, loadCart }) {
+
     const [deliveryOptions, setDeliveryOptions] = useState([]);
-    
 
     const fetchDeliveryOption = async () => {
         const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
@@ -18,31 +18,35 @@ export function CheckOutPage({cart, loadCart}) {
 
     }
     useEffect(() => {
-
         fetchDeliveryOption();
     }, [])
-    return (
 
+    return (
         <>
-            <CheckOutHeader cart={cart}/>
+            <CheckOutHeader cart={cart} />
 
             <div className="grid grid-cols-1 md:flex font-body text-brand-navy">
                 <div className=" flex-1 w-full">
-                    <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 gap-2 m-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 gap-2 m-2 ">
 
-                        {cart.map((cartItem) => {
+                        {deliveryOptions.length > 0 && cart.map((cartItem) => {
 
-                            const removeToCart = async ()=>{
+                            const removeToCart = async () => {
                                 await axios.delete(`/api/cart-items/${cartItem.productId}`);
                                 await loadCart();
                             }
 
+                            const selectedDeliveryOption = deliveryOptions.find((option)=>{
+                                return option.id === cartItem.deliveryOptionId
+                            })  
+
                             return (
                                 <div key={`${cartItem.productId}-${cartItem.size}`} className="flex flex-col items-center justify-center 
-                                    w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover hover:shadow-xl">
+                                    w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover 
+                                    hover:shadow-xl ">
                                     <hr className=" border-t-2 border-gray-300 " />
                                     <div className="text-center m-5 font-bold">
-                                        Delivery Date :{dayjs(deliveryOptions.estimatedDeliveryTimeMs).format('MMMM D')}
+                                        Delivery Date :{dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
                                     </div>
                                     <div className="flex justify-center">
                                         <img src={cartItem.product.image} className="  h-80 w-70 object-fit:contain m-1 rounded-[20px] " />
@@ -70,36 +74,13 @@ export function CheckOutPage({cart, loadCart}) {
                                             </p>
                                         </div>
 
-                                        <div className="grid gap-[10px]">
-                                            <h3 className="text-center font-bold" >Delivery Option</h3>
-                                            {deliveryOptions.map((option) => {
-                                                let stringShipping = "Free Shipping"
+                                        <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart}/>
 
-                                                if (option.priceCents > 0) {
-                                                    stringShipping = (`${moneyFormat(option.priceCents)} - Shipping `)
-                                                }
-
-                                                return (
-                                                    <div key={option.id} className="flex ">
-                                                        <input type="radio" onChange={() => { }}
-                                                            checked={cartItem.deliveryOptionId === option.id} />
-                                                        <div className="ml-3">
-                                                            <div className="font-bold">
-                                                                {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
-                                                            </div>
-                                                            <div className="opacity-50">
-                                                                {stringShipping}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })}
-                                        </div>
                                     </div>
 
                                     <div className="flex justify-center mt-8">
                                         <span >
-                                            <button onClick = {removeToCart} className="bg-red-500 px-6 py-2 rounded-[15px] cursor-pointer text-white ">Remove</button>
+                                            <button onClick={removeToCart} className="bg-red-500 px-6 py-2 rounded-[15px] cursor-pointer text-white ">Remove</button>
                                         </span>
                                     </div>
 
@@ -109,7 +90,7 @@ export function CheckOutPage({cart, loadCart}) {
                         })}
                     </div>
                 </div>
-                <PaymentSummary cart={cart}/>
+                <PaymentSummary cart={cart} />
             </div>
 
 
