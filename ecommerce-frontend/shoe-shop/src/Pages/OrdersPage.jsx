@@ -12,7 +12,6 @@ export function OrdersPage() {
         getOrders(response.data)
         console.log(response.data)
     }
-
     useEffect(() => {
         fetchOrdersData();
     }, [])

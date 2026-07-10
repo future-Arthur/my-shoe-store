@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { productId, quantity } = req.body;
+  const { productId, quantity, size } = req.body;
 
   const product = await Product.findByPk(productId);
   if (!product) {
@@ -34,12 +34,17 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'Quantity must be a number between 1 and 10' });
   }
 
-  let cartItem = await CartItem.findOne({ where: { productId } });
+  let cartItem = await CartItem.findOne({ 
+    where: { 
+      productId :productId,
+      size : size
+
+    } });
   if (cartItem) {
     cartItem.quantity += quantity;
     await cartItem.save();
   } else {
-    cartItem = await CartItem.create({ productId, quantity, deliveryOptionId: "1" });
+    cartItem = await CartItem.create({ productId, quantity, size, deliveryOptionId: "1" });
   }
 
   res.status(201).json(cartItem);
