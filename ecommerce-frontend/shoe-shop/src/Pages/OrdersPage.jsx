@@ -1,10 +1,10 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
 import { OrdersHeader } from './Components/OrdersHeader'
 import { moneyFormat } from '../Utils/moneyFormat'
 
-export function OrdersPage({cart}) {
+export function OrdersPage({ cart}) {
     const [orders, getOrders] = useState([]);
 
     const fetchOrdersData = async () => {
@@ -17,13 +17,14 @@ export function OrdersPage({cart}) {
     }, [])
     return (
         <>
-            <OrdersHeader orders = {orders} cart={cart}/>
+            <OrdersHeader orders={orders} cart={cart} />
 
             <div className="font-body text-brand-navy">
                 <div className="flex flex-col mt-3">
                     <div className="text-[30px] font-bold m-2 text-center">Your Orders</div>
                     <div className="grid gap-5   items-start">
                         {orders.map((order) => {
+
 
                             return (
                                 <div key={order.id} className="flex flex-col gap-10 bg-white rounded-[10px] 
@@ -38,39 +39,44 @@ export function OrdersPage({cart}) {
                                     </div>
                                     <hr className=" border-t-2 border-gray-300 " />
 
-                                    <div className = "flex flex-col md:flex-row md:gap-15">
-                                    {order.products.map((orderProduct) => {
+                                    <div className=" flex flex-wrap md:gap-15">
+                                        {order.products.map((orderProduct) => {
 
-                                        return(
-                                        <div key={orderProduct.productId} className = "mt-5" >
-                                            <div className="flex items-center mb-5 md:gap-5">
-                                                <img className="h-65 w-60 object-fit:contain rounded-[20px]" src={orderProduct.product.image} />
-                                                <div className="m-3 ">
-                                                    <div className="flex flex-col gap-10">
-                                                        <button className="cursor-pointer bg-brand-gold p-3 rounded-[15px] text-white text-[15px]"
-                                                            >Order Again
-                                                        </button>
-                                                        <button className="cursor-pointer bg-red-500 p-3 rounded-[15px] text-white text-center text-[15px]" 
-                                                            >Cancel
-                                                        </button>
+                                            const cancelOrder = async () => {
+                                                await axios.delete(`/api/orders/${order.id}/products/${orderProduct.productId}`)
+                                                await fetchOrdersData()
+                                            }
+
+                                            return (
+                                                <div key={orderProduct.productId} className="mt-5 w-full md:w-[45%] lg:w-[30%]" >
+                                                    <div className="flex items-center mb-5 md:gap-5">
+                                                        <img className="h-65 w-60 object-fit:contain rounded-[20px]" src={orderProduct.product.image} />
+                                                        <div className="m-3 ">
+                                                            <div className="flex flex-col gap-10">
+                                                                <button className="cursor-pointer bg-brand-gold p-3 rounded-[15px] text-white text-[15px]"
+                                                                >Order Again
+                                                                </button>
+                                                                <button className="cursor-pointer bg-red-500 p-3 rounded-[15px] text-white text-center text-[15px]"
+                                                                    onClick={cancelOrder}>Cancel
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
+                                                    <div className="flex flex-col gap-5 mb-5">
+                                                        <span className="font-bold text-[20px]" >{orderProduct.product.name}</span>
 
+                                                        <span>Arriving On : {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}</span>
+                                                        <span>Quantity :{orderProduct.quantity}</span>
+                                                    </div>
+                                                    <hr className=" border-t-2 border-gray-300 " />
                                                 </div>
-                                            </div>
-                                            <div className="flex flex-col gap-5 mb-5">
-                                                <span className="font-bold text-[20px]" >{orderProduct.product.name}</span>
-                                               
-                                                <span>Arriving On : {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}</span>
-                                                <span>Quantity :{orderProduct.quantity}</span>
-                                            </div>
-                                            <hr className=" border-t-2 border-gray-300 " />
-                                        </div>
-                                        )
-                                        
-                                    })}
+                                            )
+
+                                        })}
                                     </div>
-                                    
-                                    
+
+
 
                                 </div>
                             )

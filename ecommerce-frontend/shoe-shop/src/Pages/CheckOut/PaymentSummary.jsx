@@ -1,4 +1,5 @@
 import { useEffect,useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { moneyFormat } from '../../Utils/moneyFormat';
 
@@ -6,6 +7,7 @@ import { moneyFormat } from '../../Utils/moneyFormat';
 export function PaymentSummary({cart, loadCart}) {
     const [paymentSummary, setPaymentSummary] = useState(null);
     const [isExpanded, setIsExpanded] = useState(false);
+    const navigate = useNavigate();
 
         const fetchPaymentData = async () => {
         const response = await axios.get('/api/payment-summary')
@@ -19,6 +21,7 @@ export function PaymentSummary({cart, loadCart}) {
     const placeOrder = async () => {
         await axios.post('/api/orders')
         await loadCart();
+        navigate('/orders')
     }
     
 

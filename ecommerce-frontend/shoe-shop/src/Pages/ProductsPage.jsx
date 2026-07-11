@@ -21,8 +21,6 @@ export function ProductsPage({cart, loadCart}) {
         fetchProductsData();
     }, [])
 
-  
-
     return (
         <>
             <Header cart={cart}/>
