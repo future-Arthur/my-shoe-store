@@ -3,7 +3,7 @@ import axios from 'axios';
 import { moneyFormat } from '../../Utils/moneyFormat';
 
 
-export function PaymentSummary({cart}) {
+export function PaymentSummary({cart, loadCart}) {
     const [paymentSummary, setPaymentSummary] = useState(null);
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -16,6 +16,10 @@ export function PaymentSummary({cart}) {
         fetchPaymentData();
     }, [cart])
 
+    const placeOrder = async () => {
+        await axios.post('/api/orders')
+        await loadCart();
+    }
     
 
     return (
@@ -71,9 +75,10 @@ export function PaymentSummary({cart}) {
 
                             <div className="text-center">
                                 <button className="bg-brand-gold 
-                            px-5 py-3 rounded-[15px] 
-                            text-white w-full
-                            hover:bg-amber-400 cursor-pointer">Place Order</button>
+                                    px-5 py-3 rounded-[15px] text-white w-full
+                                    hover:bg-amber-400 cursor-pointer"
+                                    onClick = {placeOrder} >Place Order
+                                </button>
                             </div>
                         </div>
                     </div>
