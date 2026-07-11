@@ -1,9 +1,31 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import {useState} from 'react';
 import {calculateCartQuantity} from '../../Utils/calculateCartQuantity'
 
-export function Header({cart}) {
-
+export function Header({cart, setOnSearch}) {
+    const [search, setSearch] = useState('');
     const totalQuantity = calculateCartQuantity(cart);
+
+    const navigate = useNavigate();
+
+    const inputValue = (event) =>{
+        const input = (event.target.value);
+        setSearch(input)
+        if(setOnSearch){
+            setOnSearch(input)
+    
+        }
+
+    }
+    const handleSearchSubmit = (event)=>{
+        navigate('/products')
+    event.preventDefault()
+    
+    if(setOnSearch){
+        setOnSearch(search)
+    } 
+    
+   }
     
     return (
         <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[1px] md:flex-row md:justify-between ">
@@ -26,18 +48,17 @@ export function Header({cart}) {
                 </div>
 
                 <div className="text-white items-center flex xl:mr-10">
-                    <div className="flex bg-white items-center rounded-[10px] 
-                            " >
-                        <span className="m-2"
-                        ><img src="/images/icons/search.png" /></span>
+                    <form className="flex bg-white items-center rounded-[10px] " onSubmit ={handleSearchSubmit} >
+                        <button className="m-2 cursor-pointer" 
+                        ><img src="/images/icons/search.png" /></button>
                         <input type="text"
-
+                            value = {search} onChange= {inputValue}
                             placeholder="find shoes"
                             spellCheck="false"
                             className="bg-white text-black rounded  transition-all 
                                  duration-500  outline-none text-sm w-60"
                         />
-                    </div>
+                    </form>
 
                     <div className="relative flex gap-4 ml-3 xl:ml-5 ">
                         <Link to="/checkout">

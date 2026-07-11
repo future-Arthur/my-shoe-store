@@ -5,30 +5,35 @@ import { moneyFormat } from '../Utils/moneyFormat'
 
 
 
-export function ProductsPage({cart, loadCart}) {
+export function ProductsPage({cart, loadCart,onSearch,setOnSearch}) {
 
     const [products, setProducts] = useState([]);
     const [selectedSize, setSelectedSize] = useState({});
-
+   
 
     const fetchProductsData = async () => {
         const response = await axios.get('/api/products')
         setProducts(response.data)
     }
-
+   
     useEffect(() => {
 
         fetchProductsData();
     }, [])
 
+     const filteredProducts = products.filter(product=>{
+        return product.name.toLowerCase().includes(onSearch.toLowerCase())
+    })
+    
+
     return (
         <>
-            <Header cart={cart}/>
+            <Header cart={cart} setOnSearch= {setOnSearch}/>
 
             <div className=" bg-brand-medwhite grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 font-body 
                 overflow-x-hidden text-brand-navy">
 
-                {products.map((product) => {
+                {filteredProducts.map((product) => {
 
                     const addToCart = async () => {
                         const sizeToSubmit = selectedSize[product.id]
