@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs'
-
+//
 import { CheckOutHeader } from '../Components/CheckOutHeader';
 import { PaymentSummary } from './PaymentSummary'
 import { DeliveryOptions } from './DeliveryOptions'
@@ -90,7 +90,7 @@ export function CheckOutPage({ cart, loadCart }) {
                         })}
                     </div>
                 </div>
-                <PaymentSummary cart={cart} />
+                <PaymentSummary cart={cart} loadCart = {loadCart} />
             </div>
 
 

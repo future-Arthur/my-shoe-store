@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { OrdersHeader } from './Components/OrdersHeader'
 import { moneyFormat } from '../Utils/moneyFormat'
 
-export function OrdersPage() {
+export function OrdersPage({cart}) {
     const [orders, getOrders] = useState([]);
 
     const fetchOrdersData = async () => {
@@ -17,15 +17,18 @@ export function OrdersPage() {
     }, [])
     return (
         <>
-            <OrdersHeader />
+            <OrdersHeader orders = {orders} cart={cart}/>
 
             <div className="font-body text-brand-navy">
                 <div className="flex flex-col mt-3">
                     <div className="text-[30px] font-bold m-2 text-center">Your Orders</div>
-                    <div className="grid gap-5 flex-col md:grid-cols-2 xl:grid-cols-4 items-start">
+                    <div className="grid gap-5   items-start">
                         {orders.map((order) => {
+
                             return (
-                                <div key={order.id} className="flex flex-col gap-10 bg-white rounded-[10px] p-5 hover:bg-brand-cardhover hover:shadow-xl duration-800">
+                                <div key={order.id} className="flex flex-col gap-10 bg-white rounded-[10px] 
+                                p-5 hover:bg-brand-cardhover hover:shadow-xl duration-800 border-1 border-brand-navy
+                                m-5">
                                     <div>
                                         <div className="flex flex-col gap-3">
                                             <span>Order Placed : {dayjs(order.orderTimeMs).format('MMMM D')}</span>
@@ -34,11 +37,13 @@ export function OrdersPage() {
                                         </div>
                                     </div>
                                     <hr className=" border-t-2 border-gray-300 " />
-                                    
+
+                                    <div className = "flex flex-col md:flex-row md:gap-15">
                                     {order.products.map((orderProduct) => {
+
                                         return(
-                                        <div key={orderProduct.productId} >
-                                            <div className="flex items-center mb-5">
+                                        <div key={orderProduct.productId} className = "mt-5" >
+                                            <div className="flex items-center mb-5 md:gap-5">
                                                 <img className="h-65 w-60 object-fit:contain rounded-[20px]" src={orderProduct.product.image} />
                                                 <div className="m-3 ">
                                                     <div className="flex flex-col gap-10">
@@ -63,6 +68,9 @@ export function OrdersPage() {
                                         )
                                         
                                     })}
+                                    </div>
+                                    
+                                    
 
                                 </div>
                             )

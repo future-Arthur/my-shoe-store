@@ -10,6 +10,7 @@ export function ProductsPage({cart, loadCart}) {
     const [products, setProducts] = useState([]);
     const [selectedSize, setSelectedSize] = useState({});
 
+
     const fetchProductsData = async () => {
         const response = await axios.get('/api/products')
         setProducts(response.data)
@@ -20,7 +21,7 @@ export function ProductsPage({cart, loadCart}) {
         fetchProductsData();
     }, [])
 
-    console.log(selectedSize)
+  
 
     return (
         <>
@@ -33,6 +34,7 @@ export function ProductsPage({cart, loadCart}) {
 
                     const addToCart = async () => {
                         const sizeToSubmit = selectedSize[product.id]
+             
 
                         if (!sizeToSubmit) {
                             alert("Please Select Size First")
@@ -66,8 +68,10 @@ export function ProductsPage({cart, loadCart}) {
                                             }))
                                         }
                                         return (
-                                            <button onClick={pickSize} key={size} className={`cursor-pointer border p-2 hover:bg-white 
-                                                ${selectedSize[product.id] === size ? "bg-brand-gold" : ""}`}>{size}</button>
+                                            <button onClick={pickSize} key={size} 
+                                            className={`cursor-pointer border p-2 hover:bg-brand-navy hover:text-white duration-500
+                                            
+                                            ${selectedSize[product.id] === size ? "bg-brand-gold" : ""}`}>{size}</button>
                                         )
                                     })}
                                 </div>
@@ -93,7 +97,7 @@ export function ProductsPage({cart, loadCart}) {
                             <div className="flex justify-center mb-8 mt-3">
                                 <button className="cursor-pointer" onClick={addToCart}>
                                     <span className="bg-brand-gold px-12 py-3 text-white transiton-all 
-                            duration-300 hover:bg-amber-400 rounded-[10px]"
+                            duration-300 hover:bg-amber-400 rounded-[10px] "
                                     >Add To Cart</span>
                                 </button>
                             </div>

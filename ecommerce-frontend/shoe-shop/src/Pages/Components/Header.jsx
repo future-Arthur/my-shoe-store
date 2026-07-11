@@ -50,9 +50,9 @@ export function Header({cart}) {
                                 <path d="M3.103 6.034h17.794" />
                                 <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
                             </svg>
-                            <span className="absolute -top-[12px] -right-[10px] bg-red-500 
+                            <span className={`absolute -top-[12px] -right-[10px] bg-red-500 
                                 text-white text-s rounded-full h-6 w-6 
-                                flex items-center justify-center">{totalQuantity}</span>
+                                flex items-center justify-center ${totalQuantity === 0 && "hidden"}`}>{totalQuantity}</span>
                         </Link>
 
                     </div>

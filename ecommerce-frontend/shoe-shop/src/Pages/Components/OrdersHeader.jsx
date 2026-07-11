@@ -1,6 +1,12 @@
 import {Link} from 'react-router-dom'
+import {calculateOrdersQuantity} from '../../Utils/calculateOrdersQuantity'
+import { calculateCartQuantity } from '../../Utils/calculateCartQuantity'
 
-export function OrdersHeader(){
+export function OrdersHeader({orders, cart}){
+
+    const totalOrderQuantity = calculateOrdersQuantity(orders)
+    const totalCartQuantity = calculateCartQuantity(cart)
+
     return(
         <>
         <nav className="bg-brand-navy flex font-headline p-[1px] justify-between items-center ">
@@ -13,7 +19,7 @@ export function OrdersHeader(){
 
                 <div className=" flex items-center text-[25px] text-white lg:text-[28px]">
                     <h2 className="mr-2"> Orders</h2>
-                    <span className="text-brand-gold"> (3)</span>
+                    <span className="text-brand-gold"> ({totalOrderQuantity})</span>
                 </div>
 
                 <div className="flex">
@@ -34,7 +40,7 @@ export function OrdersHeader(){
                             </svg>
                               <span className="text-[15px] absolute -top-[12px] -right-[10px] bg-red-500 
                                 text-white text-s rounded-full h-6 w-6 
-                                flex items-center justify-center">3</span>
+                                flex items-center justify-center">{totalCartQuantity}</span>
                         </Link>
                     </div>
                 </div>
