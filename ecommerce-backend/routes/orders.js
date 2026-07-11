@@ -96,4 +96,28 @@ router.get('/:orderId', async (req, res) => {
   res.json(order);
 });
 
+router.delete('/:orderId/products/:productId', async (req, res) => {
+  const { orderId, productId } = req.params;
+
+  try {
+  
+    const order = await Order.findByPk(orderId);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+
+    // 2. I-filter ang listahan ng products para matanggal ang specific productId
+    order.products = order.products.filter(p => p.productId !== productId);
+
+
+    await order.save();
+
+    if(order.products.length === 0){
+      await order.destroy();
+    }
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete product from order' });
+  }
+});
+
+
 export default router;
