@@ -9,6 +9,7 @@ import {OrdersPage} from './Pages/OrdersPage'
 function App() {
   const [cart, setCart] = useState([]);
   const [onSearch, setOnSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const location = useLocation();
 
@@ -34,8 +35,13 @@ function App() {
   return (
     <Routes>
       
-      <Route index element={<HomePage cart={cart} onSearch={onSearch} setOnSearch={setOnSearch}/>}/>
-      <Route path = "products" element={<ProductsPage cart={cart} loadCart={loadCart} onSearch={onSearch} setOnSearch={setOnSearch}/>}/>
+      <Route index element={<HomePage cart={cart} onSearch={onSearch} setOnSearch={setOnSearch}
+        selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>}/>
+        
+      <Route path = "products" element={<ProductsPage 
+        cart={cart} loadCart={loadCart} onSearch={onSearch} setOnSearch={setOnSearch}
+        selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>}/>
+
       <Route path = "checkout" element={<CheckOutPage cart={cart} loadCart= {loadCart}/>}/>
       <Route path = "orders" element={<OrdersPage cart={cart} />}/>
 

@@ -5,10 +5,11 @@ import { moneyFormat } from '../Utils/moneyFormat'
 
 
 
-export function ProductsPage({cart, loadCart,onSearch,setOnSearch}) {
+export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCategory,setSelectedCategory}) {
 
     const [products, setProducts] = useState([]);
     const [selectedSize, setSelectedSize] = useState({});
+    
    
 
     const fetchProductsData = async () => {
@@ -22,13 +23,17 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch}) {
     }, [])
 
      const filteredProducts = products.filter(product=>{
-        return product.name.toLowerCase().includes(onSearch.toLowerCase())
+        const matchesSearch =  product.name.toLowerCase().includes(onSearch.toLowerCase())
+        const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+
+        return matchesSearch && matchesCategory;
+
     })
     
 
     return (
         <>
-            <Header cart={cart} setOnSearch= {setOnSearch}/>
+            <Header cart={cart} setOnSearch= {setOnSearch} setSelectedCategory={setSelectedCategory}/>
 
             <div className=" bg-brand-medwhite grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 font-body 
                 overflow-x-hidden text-brand-navy">
