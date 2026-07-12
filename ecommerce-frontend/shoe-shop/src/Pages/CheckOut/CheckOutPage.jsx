@@ -24,12 +24,10 @@ export function CheckOutPage({ cart, loadCart }) {
     return (
         <>
             <CheckOutHeader cart={cart} />
+            <div className="flex flex-col md:flex-row gap-4 p-4 font-body text-brand-navy">
+                <div className="flex-1">
 
-
-            <div className="grid grid-cols-1 md:flex font-body text-brand-navy">
-                <div className=" flex-1 w-full">
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 gap-2 m-2 ">
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))]  gap-4 ">
 
                         {deliveryOptions.length > 0 && cart.map((cartItem) => {
 
@@ -38,14 +36,15 @@ export function CheckOutPage({ cart, loadCart }) {
                                 await loadCart();
                             }
 
-                            const selectedDeliveryOption = deliveryOptions.find((option)=>{
+                            const selectedDeliveryOption = deliveryOptions.find((option) => {
                                 return option.id === cartItem.deliveryOptionId
-                            })  
+                            })
 
                             return (
-                                
-                                <div key={`${cartItem.productId}-${cartItem.size}`} className="flex flex-col items-center justify-center 
-                                    w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover 
+
+                                <div key={`${cartItem.productId}-${cartItem.size}`} 
+                                    className=" w-full max-w-[350px] mx-auto 
+                                     bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover 
                                     hover:shadow-xl ">
                                     <hr className=" border-t-2 border-gray-300 " />
                                     <div className="text-center m-5 font-bold">
@@ -77,7 +76,7 @@ export function CheckOutPage({ cart, loadCart }) {
                                             </p>
                                         </div>
 
-                                        <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart}/>
+                                        <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem} loadCart={loadCart} />
 
                                     </div>
 
@@ -90,14 +89,13 @@ export function CheckOutPage({ cart, loadCart }) {
 
                                     <hr className="my-1 border-t-2 border-gray-300 mt-10" />
                                 </div>
-                            
                             )
                         })}
                     </div>
-                   
                 </div>
-                <PaymentSummary cart={cart} loadCart = {loadCart} />
-                
+                <div className="w-full md:w-[350px] flex-shrink-0">
+                    <PaymentSummary cart={cart} loadCart={loadCart} />
+                </div>
             </div>
 
 

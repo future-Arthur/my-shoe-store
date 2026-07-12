@@ -1,20 +1,20 @@
-import { useEffect,useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { moneyFormat } from '../../Utils/moneyFormat';
 
 
-export function PaymentSummary({cart, loadCart}) {
+export function PaymentSummary({ cart, loadCart }) {
     const [paymentSummary, setPaymentSummary] = useState(null);
     const [isExpanded, setIsExpanded] = useState(false);
     const navigate = useNavigate();
 
-        const fetchPaymentData = async () => {
+    const fetchPaymentData = async () => {
         const response = await axios.get('/api/payment-summary')
         setPaymentSummary(response.data);
     }
-    
-     useEffect(() => {
+
+    useEffect(() => {
         fetchPaymentData();
     }, [cart])
 
@@ -23,13 +23,13 @@ export function PaymentSummary({cart, loadCart}) {
         await loadCart();
         navigate('/orders')
     }
-    
+
 
     return (
-        <div className="w-full md:w-[20%] relative mb-40">
+        <>
             {paymentSummary && (
                 <div className="flex-shrink-0 rounded-[20px] fixed bottom-0 left-0 w-full z-50 
-                    shadow-lg md:static md:w-auto md:shdow-none">
+                    shadow-lg md:static md:w-auto md:shadow-none">
 
                     <div>
                         <div className="flex justify-center">
@@ -70,7 +70,7 @@ export function PaymentSummary({cart, loadCart}) {
                             <hr className=" border-t-2 border-gray-300  " />
                         </div>
                         <div className="bg-brand-navy text-white pb-7 pt-3 px-5 flex flex-col gap-3 
-                    md:bg-white md:text-brand-navy">
+                               md:bg-white md:text-brand-navy">
                             <div className="flex justify-between ">
                                 <span className="font-bold text-[20px]">Order Total :  </span>
                                 <span className="font-bold mr-5 text-[20px]"> {moneyFormat(paymentSummary.totalCostCents)} </span>
@@ -80,13 +80,13 @@ export function PaymentSummary({cart, loadCart}) {
                                 <button className="bg-brand-gold 
                                     px-5 py-3 rounded-[15px] text-white w-full
                                     hover:bg-amber-400 cursor-pointer"
-                                    onClick = {placeOrder} >Place Order
+                                    onClick={placeOrder} >Place Order
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }

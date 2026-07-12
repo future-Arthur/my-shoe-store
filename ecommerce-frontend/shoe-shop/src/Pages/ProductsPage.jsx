@@ -23,7 +23,7 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCatego
         fetchProductsData();
     }, [])
 
-        const filteredProducts = products.filter(product=>{
+        const filteredProducts = products.filter((product)=>{
         const matchesSearch =  product.name.toLowerCase().includes(onSearch.toLowerCase())
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
 
