@@ -53,6 +53,7 @@ router.post('/', async (req, res) => {
     return {
       productId: item.productId,
       quantity: item.quantity,
+      priceCents: product.priceCents,
       estimatedDeliveryTimeMs
     };
   }));
@@ -100,21 +101,36 @@ router.delete('/:orderId/products/:productId', async (req, res) => {
   const { orderId, productId } = req.params;
 
   try {
-  
     const order = await Order.findByPk(orderId);
     if (!order) return res.status(404).json({ error: 'Order not found' });
 
-    // 2. I-filter ang listahan ng products para matanggal ang specific productId
-    order.products = order.products.filter(p => p.productId !== productId);
+    // 1. I-filter ang listahan (isang beses lang dapat)
+    order.products = order.products.filter(p => p.productId != productId);
 
+    // 2. I-calculate ang bagong total
+    // 2. I-calculate ang bagong total
+    let newTotal = 0;
+    // Siguraduhin na ang order.products ay may laman bago mag-loop
+    if (order.products && order.products.length > 0) {
+      for (const p of order.products) {
+        // Ginagamit ang Number() para sigurado na math operation ang gagawin
+        newTotal += (Number(p.priceCents) || 0) * (Number(p.quantity) || 0);
+      }
+    }
 
+    // Siguraduhin na laging may value ang totalCostCents
+    order.totalCostCents = Math.round(newTotal * 1.1) || 0;
+    // 3. I-save ang changes
     await order.save();
 
-    if(order.products.length === 0){
+    // 4. I-check kung wala nang laman ang order
+    if (order.products.length === 0) {
       await order.destroy();
     }
+
     res.json(order);
   } catch (error) {
+    console.error(error); // Magandang mag-log ng error para makita mo sa console
     res.status(500).json({ error: 'Failed to delete product from order' });
   }
 });
