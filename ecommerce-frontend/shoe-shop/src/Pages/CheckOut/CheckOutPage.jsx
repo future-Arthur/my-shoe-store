@@ -25,8 +25,10 @@ export function CheckOutPage({ cart, loadCart }) {
         <>
             <CheckOutHeader cart={cart} />
 
+
             <div className="grid grid-cols-1 md:flex font-body text-brand-navy">
                 <div className=" flex-1 w-full">
+                    
                     <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-4 gap-2 m-2 ">
 
                         {deliveryOptions.length > 0 && cart.map((cartItem) => {
@@ -41,6 +43,7 @@ export function CheckOutPage({ cart, loadCart }) {
                             })  
 
                             return (
+                                
                                 <div key={`${cartItem.productId}-${cartItem.size}`} className="flex flex-col items-center justify-center 
                                     w-full bg-white mt-5 px-5 duration-800 hover:bg-brand-cardhover 
                                     hover:shadow-xl ">
@@ -80,17 +83,21 @@ export function CheckOutPage({ cart, loadCart }) {
 
                                     <div className="flex justify-center mt-8">
                                         <span >
-                                            <button onClick={removeToCart} className="bg-red-500 px-6 py-2 rounded-[15px] cursor-pointer text-white ">Remove</button>
+                                            <button onClick={removeToCart} className="bg-red-500 px-6 py-2 rounded-[15px] cursor-pointer text-white
+                                                ">Remove</button>
                                         </span>
                                     </div>
 
                                     <hr className="my-1 border-t-2 border-gray-300 mt-10" />
                                 </div>
+                            
                             )
                         })}
                     </div>
+                   
                 </div>
                 <PaymentSummary cart={cart} loadCart = {loadCart} />
+                
             </div>
 
 

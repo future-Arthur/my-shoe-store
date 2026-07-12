@@ -20,12 +20,12 @@ export function CheckOutHeader({cart}){
                     <span className="text-brand-gold"> ({totalQuantity})</span>
                 </div>
                 
-                <div className="flex items-center">
-                    <div className="m-5 text-[20px] ">
-                        <Link to="/products" className="text-[25px] text-white">Products</Link>
+                <div className="flex items-center lg:justify-evenly lg:gap-15 lg:mr-10 ">
+                    <div className="m-5 text-[20px]  ">
+                        <Link to="/products" className="text-[25px] text-white hover:text-brand-gold duration-500">Products</Link>
                     </div>
                     <div className="m-5 text-[25px]">
-                        <Link to= "/orders" className="text-white">Orders</Link>
+                        <Link to= "/orders" className="text-white hover:text-brand-gold duration-500">Orders</Link>
                     </div>
                 </div>
             </nav>

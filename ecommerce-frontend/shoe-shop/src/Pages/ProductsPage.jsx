@@ -9,6 +9,7 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCatego
 
     const [products, setProducts] = useState([]);
     const [selectedSize, setSelectedSize] = useState({});
+    const [isClicked, setIsClicked] = useState(false);
     
    
 
@@ -22,7 +23,7 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCatego
         fetchProductsData();
     }, [])
 
-     const filteredProducts = products.filter(product=>{
+        const filteredProducts = products.filter(product=>{
         const matchesSearch =  product.name.toLowerCase().includes(onSearch.toLowerCase())
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
 
@@ -42,7 +43,12 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCatego
 
                     const addToCart = async () => {
                         const sizeToSubmit = selectedSize[product.id]
-             
+                        
+                        setIsClicked(true);
+
+                        setTimeout(()=>{
+                            setIsClicked(false);
+                        },150)
 
                         if (!sizeToSubmit) {
                             alert("Please Select Size First")
@@ -104,8 +110,8 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,selectedCatego
                             </div>
                             <div className="flex justify-center mb-8 mt-3">
                                 <button className="cursor-pointer" onClick={addToCart}>
-                                    <span className="bg-brand-gold px-12 py-3 text-white transiton-all 
-                            duration-300 hover:bg-amber-400 rounded-[10px] "
+                                    <span className={`bg-brand-gold px-12 py-3 text-white transiton-all 
+                            duration-300 hover:bg-amber-400 rounded-[10px] ${isClicked ? "hover:bg-brand-navy" : "hover:bg-amber-400" }`} 
                                     >Add To Cart</span>
                                 </button>
                             </div>
