@@ -13,6 +13,7 @@ function App() {
   const [onSearch, setOnSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [wishList, setWishList] = useState([]);
+  const [selectedSize, setSelectedSize] = useState({});
 
   const location = useLocation();
 
@@ -53,11 +54,11 @@ function App() {
       <Route path="products" element={<ProductsPage
         cart={cart} loadCart={loadCart} onSearch={onSearch} setOnSearch={setOnSearch}
         selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} 
-        loadWishList = {loadWishList} wishList={wishList}/>} />
+        loadWishList = {loadWishList} wishList={wishList} selectedSize={selectedSize} setSelectedSize = {setSelectedSize}/>} />
 
       <Route path="checkout" element={<CheckOutPage cart={cart} loadCart={loadCart} />} />
       <Route path="orders" element={<OrdersPage cart={cart} />} />
-      <Route path="wishlist" element={<WishListPage cart={cart} loadCart = {loadCart} wishList={wishList} loadWishList= {loadWishList} />} />
+      <Route path="wishlist" element={<WishListPage cart={cart} loadCart = {loadCart} wishList={wishList} loadWishList= {loadWishList} selectedSize={selectedSize} setSelectedSize = {setSelectedSize}/>} />
 
     </Routes>
   )

@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { calculateCartQuantity } from '../../../Utils/calculateCartQuantity'
 
-export function Header({ cart, setOnSearch, setSelectedCategory,wishList }) {
+export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
     const [search, setSearch] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const totalQuantity = calculateCartQuantity(cart);

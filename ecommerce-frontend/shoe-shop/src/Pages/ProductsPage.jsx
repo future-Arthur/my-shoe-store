@@ -3,14 +3,16 @@ import axios from 'axios'
 import { Header } from './Components/Headers/Header'
 import { moneyFormat } from '../Utils/moneyFormat'
 import {AddToWishList} from './Components/Buttons/addToWishListButton'
+import {SelectSizeButton} from './Components/Buttons/selectSizeButton'
 
 
 
 export function ProductsPage({cart, loadCart,onSearch,setOnSearch,
-                selectedCategory,setSelectedCategory, loadWishList, wishList}) {
+                selectedCategory,setSelectedCategory, loadWishList,
+                 wishList, selectedSize, setSelectedSize}) {
 
     const [products, setProducts] = useState([]);
-    const [selectedSize, setSelectedSize] = useState({});
+
     const [isClicked, setIsClicked] = useState(false);
     
     const fetchProductsData = async () => {
@@ -77,22 +79,10 @@ export function ProductsPage({cart, loadCart,onSearch,setOnSearch,
                                 <div className=" absolute bottom-3 lg:opacity-0 transition-opacity duration-1000 
                                     lg:group-hover:opacity-100 flex gap-1 text-brand-navy">
                                     <span className="cursor-pointer opacity-50 flex items-center mr-5">size</span>
+                                    
 
-                                    {product.size && product.size.map((size) => {
-
-                                        const pickSize = () => {
-                                            setSelectedSize((prev) => ({
-                                                ...prev,
-                                                [product.id]: size
-                                            }))
-                                        }
-                                        return (
-                                            <button onClick={pickSize} key={size} 
-                                            className={`cursor-pointer border p-2 hover:bg-brand-navy hover:text-white duration-500
-                                            
-                                            ${selectedSize[product.id] === size ? "bg-brand-gold" : ""}`}>{size}</button>
-                                        )
-                                    })}
+                                    <SelectSizeButton product = {product} selectedSize = {selectedSize} setSelectedSize={setSelectedSize}/>
+                                
                                 </div>
 
                             </div>
