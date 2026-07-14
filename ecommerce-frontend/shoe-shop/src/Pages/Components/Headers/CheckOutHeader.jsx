@@ -1,6 +1,6 @@
 
 import {Link} from 'react-router-dom'
-import {calculateCartQuantity} from '../../Utils/calculateCartQuantity'
+import {calculateCartQuantity} from '../../../Utils/calculateCartQuantity'
 
 export function CheckOutHeader({cart}){
     

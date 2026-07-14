@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs'
 //
-import { CheckOutHeader } from '../Components/CheckOutHeader';
+import { CheckOutHeader } from '../Components/Headers/CheckOutHeader';
 import { PaymentSummary } from './PaymentSummary'
 import { DeliveryOptions } from './DeliveryOptions'
 import { moneyFormat } from '../../Utils/moneyFormat'

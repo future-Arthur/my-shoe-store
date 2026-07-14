@@ -1,10 +1,10 @@
-import {Header} from './Components/Header'
+
+import {Header} from './Components/Headers/Header'
 import {Link} from 'react-router-dom'
 import '../index.css'
 
 
-export function HomePage({cart, onSearch, setOnSearch,selectedCategory,setSelectedCategory}) {
-
+export function HomePage({cart, onSearch, setOnSearch,selectedCategory,setSelectedCategory,wishList}) {
 
     return (
         <section className="relative h-screen over-flow-hidden" >
@@ -15,7 +15,7 @@ export function HomePage({cart, onSearch, setOnSearch,selectedCategory,setSelect
             className = "absolute inset-0 w-full h-full object-cover -z-10">
                 <source src="/landingpagevideo.mp4" />
             </video>
-            <Header cart={cart} onSearch={onSearch} setOnSearch={setOnSearch} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+            <Header cart={cart} onSearch={onSearch} setOnSearch={setOnSearch} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} wishList = {wishList}/>
            
             <div className = "text-center mt-100 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
                <h1 className = "text-[65px] font-bold  font-headline md:text-110 xl:text-[120px]">

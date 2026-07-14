@@ -24,9 +24,20 @@ router.get('/', async (req, res) => {
   res.json(items);
 });
 
-// POST: Mag-add sa wishlist
+
 router.post('/', async (req, res) => {
   const { productId } = req.body;
+
+ 
+  const existingItem = await WishlistItem.findOne({ 
+    where: { productId: productId } 
+  });
+
+  
+  if (existingItem) {
+    return res.status(400).json({ message: "Item is already in your wishlist" });
+  }
+
   const item = await WishlistItem.create({ productId });
   res.status(201).json(item);
 });

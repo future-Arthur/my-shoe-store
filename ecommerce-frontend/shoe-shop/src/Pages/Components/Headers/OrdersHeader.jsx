@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
-import {calculateOrdersQuantity} from '../../Utils/calculateOrdersQuantity'
-import { calculateCartQuantity } from '../../Utils/calculateCartQuantity'
+import {calculateOrdersQuantity} from '../../../Utils/calculateOrdersQuantity'
+import { calculateCartQuantity } from '../../..//Utils/calculateCartQuantity'
 
 export function OrdersHeader({orders, cart}){
 

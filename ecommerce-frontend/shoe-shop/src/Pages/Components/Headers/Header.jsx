@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-import { calculateCartQuantity } from '../../Utils/calculateCartQuantity'
+import { calculateCartQuantity } from '../../../Utils/calculateCartQuantity'
 
-export function Header({ cart, setOnSearch, setSelectedCategory }) {
+export function Header({ cart, setOnSearch, setSelectedCategory,wishList }) {
     const [search, setSearch] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const totalQuantity = calculateCartQuantity(cart);
@@ -46,14 +46,14 @@ export function Header({ cart, setOnSearch, setSelectedCategory }) {
                 </div>
             </div>
 
-            <div className="text-white items-center flex xl:mr-10 flex justify-evenly">
+            <div className="text-white items-center flex xl:mr-5 flex justify-evenly xl:gap-5">
                 <div className="flex items-center md:hidden">
                     <button onClick = {()=>{setIsMenuOpen(!isMenuOpen)}}>
                          <img src="/images/icons/menu.png" />
                     </button>
                    
                 </div>
-                <form className="flex bg-white items-center rounded-[10px] " onSubmit={handleSearchSubmit} >
+                <form className="flex bg-white items-center rounded-[10px] ml-10 md:ml-0" onSubmit={handleSearchSubmit} >
                     <button className="m-2 cursor-pointer"
                     ><img src="/images/icons/search.png" /></button>
                     <input type="text"
@@ -61,13 +61,23 @@ export function Header({ cart, setOnSearch, setSelectedCategory }) {
                         placeholder="find shoes"
                         spellCheck="false"
                         className="bg-white text-black rounded  transition-all 
-                                 duration-500  outline-none text-sm w-60"
+                                 duration-500  outline-none text-sm w-45 md:w-60"
                     />
                 </form>
 
-                <div className="relative flex gap-4 ml-3 xl:ml-5 ">
-                    <Link to="/checkout">
-                        <svg className="lucide lucide-shopping-bag-icon lucide-shopping-bag cursor-pointer"
+                <div className = "relative">
+                    <Link to="/wishlist">
+                        <img src= "/images/icons/whiteheart.png" className = "w-10 h-10"/>
+                     </Link>
+                      <span className={`absolute -top-[9px] -right-[13px] bg-red-500 
+                                text-white text-s rounded-full h-6 w-6 
+                                flex items-center justify-center ${wishList.length === 0 && "hidden"}`}>{wishList.length}
+                        </span>
+                </div>
+
+                <div className="relative flex">
+                    <Link to="/checkout" >
+                        <svg className="lucide lucide-shopping-bag-icon lucide-shopping-bag cursor-pointer "
                             xmlns="http://www.w3.org/2000/svg"
                             width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -76,12 +86,16 @@ export function Header({ cart, setOnSearch, setSelectedCategory }) {
                             <path d="M3.103 6.034h17.794" />
                             <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />
                         </svg>
-                        <span className={`absolute -top-[12px] -right-[10px] bg-red-500 
+                        <span className={`absolute -top-[9px] -right-[13px] bg-red-500 
                                 text-white text-s rounded-full h-6 w-6 
-                                flex items-center justify-center ${totalQuantity === 0 && "hidden"}`}>{totalQuantity}</span>
+                                flex items-center justify-center ${totalQuantity === 0 && "hidden"}`}>{totalQuantity}
+                        </span>
                     </Link>
+                   
 
                 </div>
+                
+                
             </div>
 
         </nav>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
-import { OrdersHeader } from './Components/OrdersHeader'
+import { OrdersHeader } from './Components/Headers/OrdersHeader'
 import { moneyFormat } from '../Utils/moneyFormat'
 
 export function OrdersPage({ cart }) {
