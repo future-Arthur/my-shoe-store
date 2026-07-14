@@ -6,17 +6,21 @@ import { sequelize } from './models/index.js';
 import productRoutes from './routes/products.js';
 import deliveryOptionRoutes from './routes/deliveryOptions.js';
 import cartItemRoutes from './routes/cartItems.js';
+import wishlistRoutes from './routes/wishlistItems.js';
 import orderRoutes from './routes/orders.js';
 import resetRoutes from './routes/reset.js';
 import paymentSummaryRoutes from './routes/paymentSummary.js';
 import { Product } from './models/Product.js';
 import { DeliveryOption } from './models/DeliveryOption.js';
 import { CartItem } from './models/CartItem.js';
+import {WishlistItem} from './models/WishlistItem.js';
 import { Order } from './models/Order.js';
 import { defaultProducts } from './defaultData/defaultProducts.js';
 import { defaultDeliveryOptions } from './defaultData/defaultDeliveryOptions.js';
 import { defaultCart } from './defaultData/defaultCart.js';
+import {defaultWishList} from './defaultData/defaultWishList.js';
 import { defaultOrders } from './defaultData/defaultOrders.js';
+
 import fs from 'fs';
 
 const app = express();
@@ -38,6 +42,8 @@ app.use('/api/cart-items', cartItemRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reset', resetRoutes);
 app.use('/api/payment-summary', paymentSummaryRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+
 
 // Serve static files from the dist folder
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -91,10 +97,18 @@ if (productCount === 0) {
     updatedAt: new Date(timestamp + index)
   }));
 
+  // Idagdag ito pagkatapos ng cartItemsWithTimestamps o bago ang bulkCreate
+  const wishlistWithTimestamps = defaultWishList.map((item, index) => ({
+    ...item,
+    createdAt: new Date(timestamp + index),
+    updatedAt: new Date(timestamp + index),
+}));
+
   await Product.bulkCreate(productsWithTimestamps);
   await DeliveryOption.bulkCreate(deliveryOptionsWithTimestamps);
   await CartItem.bulkCreate(cartItemsWithTimestamps);
   await Order.bulkCreate(ordersWithTimestamps);
+  await WishlistItem.bulkCreate(wishlistWithTimestamps);
 
   console.log('Default data added to the database.');
 }
