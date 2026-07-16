@@ -1,12 +1,43 @@
-# React + Vite
+Shoe Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+​I built this e-commerce project to challenge myself with building a complete, responsive shopping experience from the ground up. The goal was to create a clean, functional interface where users can easily browse products, manage their cart, and track their orders.
 
-Currently, two official plugins are available:
+​What’s Under the Hood
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+​I focused on building a clean frontend architecture using:
 
-## Expanding the ESLint configuration
+​React 19 and JavaScript (ES6+) for the core logic and component structure. 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+​Tailwind CSS for styling, ensuring the site looks and feels great on both mobile and desktop.
+
+​Vite as the build tool to keep the development process fast.
+
+​React Router DOM for handling navigation between pages.
+
+​Axios to manage API requests.
+
+​Day.js to handle date formatting for order tracking.
+
+​Note: While I built the entire frontend and UI logic from scratch, I used AI-assisted tools to help structure and prototype the backend API.
+
+​Key Features
+
+​Product Browsing: A simple way for users to view different shoe models.
+
+​Cart Management: A straightforward system to add, view, and manage selected items.
+
+​Order Tracking: A clear view of order status, including totals and arrival dates.
+
+​Responsive Design: Designed to work smoothly on both desktop and mobile devices.
+
+​Guest Checkout: A streamlined flow that lets users purchase items without the friction of account creation.
+
+​Getting Started
+
+​If you’d like to see the code in action, you can run it locally:
+
+​Clone this repository: git clone [https://github.com/future-Arthur/my-shoe-store.git]
+
+​Install the dependencies: npm install
+
+​Start the development server: npm run dev
