@@ -62,7 +62,7 @@ export function CheckOutPage({ cart, loadCart }) {
                                         Delivery Date :{dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
                                     </div>
                                     <div className="flex justify-center">
-                                        <img src={`https://my-shoe-store-backend.onrender.com/images/products/${cartItem.product.image}`} alt={cartItem.product.name} className="  h-90 w-80 object-fit:contain m-1 rounded-[10px] " />
+                                        <img src={`https://my-shoe-store-backend.onrender.com/${cartItem.product.image}`} alt={cartItem.product.name} className="  h-90 w-80 object-fit:contain m-1 rounded-[10px] " />
                                     </div>
                                     <div className="font-bold text-center m-5 text-[18px]">
                                         {cartItem.product.name}
