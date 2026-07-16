@@ -8,8 +8,13 @@ export function OrdersPage({ cart }) {
     const [orders, getOrders] = useState([]);
 
     const fetchOrdersData = async () => {
-        const response = await axios.get('/api/orders?expand=products')
+        try{
+              const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/orders?expand=products')
         getOrders(response.data)
+        }catch(error){
+            console.error(`Error fetching Orders : ${error}`)
+        }
+      
     }
     useEffect(() => {
         fetchOrdersData();
@@ -44,9 +49,14 @@ export function OrdersPage({ cart }) {
                                     <div className=" flex flex-wrap md:gap-15 justify-center md:justify-start">
                                         {order.products.map((orderProduct) => {
 
-                                            const cancelOrder = async () => {                      
-                                                await axios.delete(`/api/orders/${order.id}/products/${orderProduct.productId}`)
+                                            const cancelOrder = async () => { 
+                                                try{
+                                                     await axios.delete(`https://my-shoe-store-backend.onrender.com/api/orders/${order.id}/products/${orderProduct.productId}`)
                                                 await fetchOrdersData()
+                                                }catch(error){
+                                                    console.error(`Error cancelling Order : ${error}`)
+                                                }                     
+                                               
                                             }
 
                                             return (

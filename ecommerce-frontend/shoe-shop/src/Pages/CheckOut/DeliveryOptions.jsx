@@ -16,10 +16,15 @@ export function DeliveryOptions({ deliveryOptions, cartItem, loadCart }) {
                 }
 
                 const updateDeliveryOption = async () => {
-                    await axios.put(`/api/cart-items/${cartItem.productId}`, {
-                        deliveryOptionId: option.id
-                    })
-                    await loadCart();
+                    try {
+                        await axios.put(`https://my-shoe-store-backend.onrender.com/api/cart-items/${cartItem.productId}`, {
+                            deliveryOptionId: option.id
+                        })
+                        await loadCart();
+                    } catch (error) {
+                        console.error(`Error updating delivery option : ${error}`)
+                    }
+
                 }
 
                 return (

@@ -14,8 +14,13 @@ export function CheckOutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
 
     const fetchDeliveryOption = async () => {
-        const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-        setDeliveryOptions(response.data)
+        try {
+            const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/delivery-options?expand=estimatedDeliveryTime')
+            setDeliveryOptions(response.data)
+        } catch (error) {
+            console.error(`Error fetching delivery options : ${error}`)
+        }
+
     }
 
     useEffect(() => {
@@ -34,8 +39,13 @@ export function CheckOutPage({ cart, loadCart }) {
                         {deliveryOptions.length > 0 && cart.map((cartItem) => {
 
                             const removeToCart = async () => {
-                                await axios.delete(`/api/cart-items/${cartItem.productId}`);
-                                await loadCart();
+                                try {
+                                    await axios.delete(`https://my-shoe-store-backend.onrender.com/api/cart-items/${cartItem.productId}`);
+                                    await loadCart();
+                                } catch (error) {
+                                    console.error(`Error removing from cart : ${error}`)
+                                }
+
                             }
 
                             const selectedDeliveryOption = deliveryOptions.find((option) => {
@@ -63,7 +73,7 @@ export function CheckOutPage({ cart, loadCart }) {
                                             <span className="font-bold">
                                                 Other Info
                                             </span>
-                                            <p> Price : 
+                                            <p> Price :
                                                 <span className="font-bold"> {moneyFormat(cartItem.product.priceCents)}
                                                 </span>
                                             </p>

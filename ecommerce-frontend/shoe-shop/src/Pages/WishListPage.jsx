@@ -21,8 +21,13 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
 
                     {wishList.map((wish) => {
                         const removeToWishList = async () => {
-                            await axios.delete(`/api/wishlist/${wish.productId}`)
-                            await loadWishList();
+                            try{
+                                await axios.delete(`https://my-shoe-store-backend.onrender.com/api/wishlist/${wish.productId}`)
+                                await loadWishList();
+                            }catch(error){
+                                console.error(`Error deleting WishList Item : ${error}`)
+                            }
+                            
                         }
 
                         const addToCart = async () => {
@@ -31,13 +36,20 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
                                 alert("Please Select Size First")
                                 return;
                             }
-                            await axios.post('/api/cart-items', {
+                            try{
+                                await axios.post('https://my-shoe-store-backend.onrender.com/api/cart-items', {
                                 productId: wish.productId,
                                 quantity: 1,
                                 size: selectedSize[wish.productId],
                             })
                             removeToWishList();
                             await loadCart();
+                            }catch(error){
+                                console.error(`Error adding to Cart : ${error}`)
+
+                            
+                            }
+                            
 
 
                         }

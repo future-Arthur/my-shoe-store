@@ -18,13 +18,23 @@ function App() {
   const location = useLocation();
 
   const loadCart = async () => {
-    const response = await axios.get('/api/cart-items?expand=product')
+    try{
+      const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/cart-items?expand=product')
     setCart(response.data)
+    }catch(error){
+      console.error(`error fetching cart data : ${error}`)
+    }
+    
 
   }
   const loadWishList = async () => {
-    const response = await axios.get('/api/wishlist?expand=product')
+    try{
+          const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/wishlist?expand=product')
     setWishList(response.data)
+    }catch(error){
+      console.error(`error fetching wislist data : ${error}`)
+    }
+
   }
 
   useEffect(() => {

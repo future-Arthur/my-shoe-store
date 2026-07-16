@@ -15,8 +15,13 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
     const [isClicked, setIsClicked] = useState(false);
 
     const fetchProductsData = async () => {
-        const response = await axios.get('/api/products')
-        setProducts(response.data)
+        try{
+            const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/products')
+             setProducts(response.data)
+        }catch(error){
+            console.error(`Error fetching product data : ${error} `)
+        }
+      
     }
 
     useEffect(() => {
@@ -58,12 +63,18 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
                             alert("Please Select Size First")
                             return;
                         }
-                        await axios.post('/api/cart-items', {
+                        try{
+                             await axios.post('https://my-shoe-store-backend.onrender.com/api/cart-items', {
                             productId: product.id,
                             quantity: 1,
                             size: sizeToSubmit,
                         })
-                        await loadCart();
+                            await loadCart();
+                        }catch(error){
+                            console.error(`Error Adding to Cart : ${error}`)
+                        }
+                        
+                       
                     }
 
 

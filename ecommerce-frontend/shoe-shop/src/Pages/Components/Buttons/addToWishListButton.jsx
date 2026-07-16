@@ -11,18 +11,22 @@ export function AddToWishList({product,loadWishList, wishListIds}) {
     },[wishListIds, product.id])
 
     const addToWishList = async () => {
-        
-        if (isWished) {
-            await axios.delete(`/api/wishlist/${product.id}`)
+        try{
+              if (isWished) {
+            await axios.delete(`https://my-shoe-store-backend.onrender.com/api/wishlist/${product.id}`)
             await setIsWished(false);
         } else {
-            await axios.post('/api/wishlist', {
+            await axios.post('https://my-shoe-store-backend.onrender.com/api/wishlist', {
                 productId: product.id
             })
             await setIsWished(true)
         }
 
         await loadWishList();
+        } catch(error){
+        console.error(`Error updating wishlist : ${error}`)
+        }
+      
     }
 
     return (

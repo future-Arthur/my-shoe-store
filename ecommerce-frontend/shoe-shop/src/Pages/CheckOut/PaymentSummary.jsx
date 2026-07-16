@@ -11,8 +11,13 @@ export function PaymentSummary({ cart, loadCart }) {
     const navigate = useNavigate();
 
     const fetchPaymentData = async () => {
-        const response = await axios.get('/api/payment-summary')
+        try{
+             const response = await axios.get('https://my-shoe-store-backend.onrender.com/api/payment-summary')
         setPaymentSummary(response.data);
+        }catch(error){
+            console.error(`Error fetching payment data : ${error}`)
+        }
+       
     }
 
     useEffect(() => {
@@ -20,9 +25,15 @@ export function PaymentSummary({ cart, loadCart }) {
     }, [cart])
 
     const placeOrder = async () => {
-        await axios.post('/api/orders')
-        await loadCart();
-        navigate('/orders')
+        try{
+             await axios.post('https://my-shoe-store-backend.onrender.com/api/orders')
+             await loadCart();
+             navigate('/orders')
+        }catch(error){
+            console.error(`error placing Order : ${error}`)
+        }
+       
+       
     }
 
 
