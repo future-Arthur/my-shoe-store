@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import { Toaster } from 'react-hot-toast';
 
 import { HomePage } from './Pages/HomePage'
 import { ProductsPage } from './Pages/ProductsPage'
@@ -55,8 +56,10 @@ function App() {
 
 
   return (
+    <>
+      <Toaster />
     <Routes>
-
+    
       <Route index element={<HomePage cart={cart} onSearch={onSearch} setOnSearch={setOnSearch}
         selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} wishList={wishList} />} />
 
@@ -70,6 +73,7 @@ function App() {
       <Route path="wishlist" element={<WishListPage cart={cart} loadCart = {loadCart} wishList={wishList} loadWishList= {loadWishList} selectedSize={selectedSize} setSelectedSize = {setSelectedSize}/>} />
 
     </Routes>
+    </>
   )
 }
 

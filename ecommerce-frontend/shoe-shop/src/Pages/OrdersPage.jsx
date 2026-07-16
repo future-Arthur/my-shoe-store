@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import dayjs from 'dayjs'
+import toast from 'react-hot-toast';
 import { OrdersHeader } from './Components/Headers/OrdersHeader'
 import { moneyFormat } from '../Utils/moneyFormat'
 import {Devider} from './Components/Devider'
@@ -52,9 +53,11 @@ export function OrdersPage({ cart }) {
                                             const cancelOrder = async () => { 
                                                 try{
                                                      await axios.delete(`https://my-shoe-store-backend.onrender.com/api/orders/${order.id}/products/${orderProduct.productId}`)
+                                                    toast.success("Order cancelled")
                                                 await fetchOrdersData()
                                                 }catch(error){
                                                     console.error(`Error cancelling Order : ${error}`)
+                                                    console.error("Failed to cancel")
                                                 }                     
                                                
                                             }
