@@ -46,7 +46,7 @@ export function PaymentSummary({ cart, loadCart }) {
                     <div>
                         <div className="flex justify-center">
                             <button onClick={() => setIsExpanded(!isExpanded)}>
-                                <img src="/images/icons/chevron.png"
+                                <img src="https://my-shoe-store-backend.onrender.com/images/icons/chevron.png"
                                     className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""} md:hidden`} />
                             </button>
                         </div>
