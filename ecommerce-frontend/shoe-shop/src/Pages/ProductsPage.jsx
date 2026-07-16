@@ -82,7 +82,7 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
                         <div key={product.id} className="ml-5 flex flex-col bg-white w-85 h-auto gap-2 mt-5 rounded-[10px] 
                             group hover:bg-brand-navy hover:text-white transition-all duration-800 shadow-xl">
                             <div className="flex justify-center mt-5 relative">
-                                <img src={product.image} className="h-90 w-80" />
+                                <img src={`https://my-shoe-store-backend.onrender.com/images/products/${product.image}`}  alt={product.name} className="h-90 w-80" />
 
                                 <AddToWishList loadWishList={loadWishList} product={product} wishListIds={wishListIds} />
 

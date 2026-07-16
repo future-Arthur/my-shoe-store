@@ -64,7 +64,8 @@ export function OrdersPage({ cart }) {
                                                 <div key={orderProduct.productId} className="mt-5" >
                                                     <div className="flex flex-col md:flex-row items-center mb-5 md:gap-5 w-[250px] md:w-[500px]">
                                                             <img className="h-65 w-60 object-fit:contain rounded-[20px] border-1 border-brand-navy" 
-                                                                src={orderProduct.product.image} />
+                                                                src={`https://my-shoe-store-backend.onrender.com/images/products/${orderProduct.product.image}` } 
+                                                                alt={orderProduct.name} />
                
                                                         <div className="m-3 ">
                                                             <div className="flex flex-col gap-5 mb-5">

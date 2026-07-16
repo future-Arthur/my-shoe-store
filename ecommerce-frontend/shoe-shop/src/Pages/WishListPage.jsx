@@ -49,15 +49,13 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
 
                             
                             }
-                            
-
 
                         }
                         return (
                             <div key={wish.productId} className=" flex flex-col md:flex-row items-center bg-white shadow-xl w-[300px] 
                                 md:w-[550px] md:h-[300px] p-2 md:p-0 hover:bg-brand-gold hover:text-brand-navy duration-100 relative group duration-500">
 
-                                <img src={wish.product.image} className="h-80  w-70 md:h-75 md:w-60  md:p-2" />
+                                <img src={`https://my-shoe-store-backend.onrender.com/images/products/${wish.product.image}`} alt={wish.product.name} className="h-80  w-70 md:h-75 md:w-60  md:p-2" />
 
                                 <div className="flex absolute top-[280px] left-[30px] md:top-[245px] md:left-[15px] 
                                         items-center lg:opacity-0 lg:group-hover:opacity-100 text-brand-navy">
