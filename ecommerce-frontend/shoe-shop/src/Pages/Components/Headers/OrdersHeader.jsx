@@ -12,7 +12,7 @@ export function OrdersHeader({ orders, cart }) {
             <nav className="bg-brand-navy flex font-headline p-[1px] justify-between items-center ">
                 <div className="flex justify-start gap-2 hidden md:flex">
                     <Link className="flex items-center gap-2 cursor-pointer" to="/">
-                        <img className="w-15 h-15 rounded-[50%]" src="https://my-shoe-store-backend.onrender.com/images/icons/shoeLog.jpg" />
+                        <img className="w-15 h-15 rounded-[50%]" src="https://my-shoe-store-backend.onrender.com/images/shoelog.jpg" />
                         <span className="text-[35px] text-white font-bold ">SHOE'S
                             <span className="text-brand-gold">HOP
                             </span>
