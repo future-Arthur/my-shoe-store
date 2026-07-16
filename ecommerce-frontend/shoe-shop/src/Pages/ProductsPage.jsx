@@ -62,7 +62,7 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
                         }, 150)
 
                         if (!sizeToSubmit) {
-                            alert("Please Select Size First")
+                            toast("Please Select Size First")
                             return;
                         }
                         try{
