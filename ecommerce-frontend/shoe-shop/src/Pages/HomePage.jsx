@@ -18,7 +18,7 @@ export function HomePage({ cart, onSearch, setOnSearch, selectedCategory, setSel
             <Header cart={cart} onSearch={onSearch} setOnSearch={setOnSearch} selectedCategory={selectedCategory} 
                     setSelectedCategory={setSelectedCategory} wishList={wishList} />
 
-            <div className="text-center mt-100 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
+            <div className="text-center mt-70 text-brand-navy flex flex-wrap justify-center md:mt-100  md:flex-col lg:mt-115">
                 <h1 className="text-[65px] font-bold  font-headline md:text-110 xl:text-[120px]">
 
                     <span className="transiton-all duration-300 hover:text-brand-gold">NO </span>
