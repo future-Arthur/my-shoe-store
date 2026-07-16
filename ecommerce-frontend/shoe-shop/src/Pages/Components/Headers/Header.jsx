@@ -31,7 +31,7 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
         <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[10px] md:flex-row md:justify-between ">
             <div className="flex justify-start items-center gap-2 ">
                 <Link className="flex items-center gap-2 cursor-pointer" to="/">
-                    <img className="w-15 h-15 rounded-[50%]" src="/images/icons/shoeLog.jpg" />
+                    <img className="w-15 h-15 rounded-[50%]" src="https://my-shoe-store-backend.onrender.com/images/icons/shoeLog.jpg" />
                     <span className="text-[35px] text-white font-bold ">SHOE'S
                         <span className="text-brand-gold">HOP</span>
                     </span>
@@ -57,13 +57,13 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
             <div className="text-white items-center flex xl:mr-5 flex justify-evenly xl:gap-5">
                 <div className="flex items-center md:hidden">
                     <button onClick = {()=>{setIsMenuOpen(!isMenuOpen)}}>
-                         <img src="/images/icons/menu.png" />
+                         <img src="https://my-shoe-store-backend.onrender.com/images/icons/menu.png" />
                     </button>
                    
                 </div>
                 <form className="flex bg-white items-center rounded-[10px] ml-10 md:ml-0" onSubmit={handleSearchSubmit} >
                     <button className="m-2 cursor-pointer"
-                    ><img src="/images/icons/search.png" /></button>
+                    ><img src="https://my-shoe-store-backend.onrender.com/images/icons/search.png" /></button>
                     <input type="text"
                         value={search} onChange={inputValue}
                         placeholder="find shoes"
@@ -75,7 +75,7 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
 
                 <div className = "relative">
                     <Link to="/wishlist">
-                        <img src= "/images/icons/whiteheart.png" className = "w-10 h-10"/>
+                        <img src= "https://my-shoe-store-backend.onrender.com/images/icons/whiteheart.png" className = "w-10 h-10"/>
                      </Link>
                       <span className={`absolute -top-[9px] -right-[13px] bg-red-500 text-white text-s rounded-full h-6 w-6 
                                 flex items-center justify-center ${wishList.length === 0 && "hidden"}`}>{wishList.length}

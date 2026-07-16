@@ -103,14 +103,14 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
                                 {product.keywords}
                             </div>
                             <div className="flex justify-center">
-                                <img src={`/images/ratings/rating-${product.rating.stars * 10}.png`} className="h-6" />
+                                <img src={`https://my-shoe-store-backend.onrender.com/images/ratings/rating-${product.rating.stars * 10}.png`} className="h-6" />
                             </div>
                             <div className="flex justify-center m-0  font-bold text-[20px]">
                                 {moneyFormat(product.priceCents)}
                             </div>
                             <div className="flex flex-row justify-center opacity-0" >
                                 Item Added
-                                <img src="/images/icons/icons8-check.gif" className="h-5 text-center ml-2" />
+                                <img src="https://my-shoe-store-backend.onrender.com/images/icons/icons8-check.gif" className="h-5 text-center ml-2" />
                             </div>
                             <div className="flex justify-center mb-8 mt-3">
                                 <button className="cursor-pointer" onClick={addToCart}>

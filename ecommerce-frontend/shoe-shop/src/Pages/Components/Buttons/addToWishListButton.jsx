@@ -32,7 +32,7 @@ export function AddToWishList({product,loadWishList, wishListIds}) {
     return (
         <button className="cursor-pointer absolute w-10 h-20 lg:opacity-0 transition-opacity duration-1000 lg:group-hover:opacity-100"
             onClick={addToWishList}>
-            <img src={`/images/icons/${isWished ? "heart-solid" : "heart-regular"}.png`} className={` ${isWished ? "h-10" : "h-9"} duration-100`} />
+            <img src={`https://my-shoe-store-backend.onrender.com/images/icons/${isWished ? "heart-solid" : "heart-regular"}.png`} className={` ${isWished ? "h-10" : "h-9"} duration-100`} />
         </button>
     )
 }
