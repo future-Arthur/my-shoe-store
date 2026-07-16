@@ -31,7 +31,7 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
         <nav className="bg-brand-navy flex flex-col justify-center font-headline p-[10px] md:flex-row md:justify-between ">
             <div className="flex justify-start items-center gap-2 ">
                 <Link className="flex items-center gap-2 cursor-pointer" to="/">
-                    <img className="w-15 h-15 rounded-[50%]" src="https://my-shoe-store-backend.onrender.com/images/icons/shoeLog.jpg" />
+                    <img className="w-15 h-15 rounded-[50%]" src="https://my-shoe-store-backend.onrender.com/images/shoelog.jpg" />
                     <span className="text-[35px] text-white font-bold ">SHOE'S
                         <span className="text-brand-gold">HOP</span>
                     </span>
