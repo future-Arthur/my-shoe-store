@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import { Header } from './Components/Headers/Header'
 import { moneyFormat } from '../Utils/moneyFormat';
 import { SelectSizeButton } from './Components/Buttons/selectSizeButton'
@@ -23,9 +24,11 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
                         const removeToWishList = async () => {
                             try{
                                 await axios.delete(`https://my-shoe-store-backend.onrender.com/api/wishlist/${wish.productId}`)
+                                toast.success("Item removed from wishlist")
                                 await loadWishList();
                             }catch(error){
                                 console.error(`Error deleting WishList Item : ${error}`)
+                                toast.error("Failed to remove")
                             }
                             
                         }
@@ -33,7 +36,7 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
                         const addToCart = async () => {
 
                             if (!selectedSize[wish.productId]) {
-                                alert("Please Select Size First")
+                                toast("Please Select Size First")
                                 return;
                             }
                             try{
@@ -42,11 +45,12 @@ export function WishListPage({ cart, wishList, loadWishList, loadCart, selectedS
                                 quantity: 1,
                                 size: selectedSize[wish.productId],
                             })
+                            toast.success("Added to cart")
                             removeToWishList();
                             await loadCart();
                             }catch(error){
                                 console.error(`Error adding to Cart : ${error}`)
-
+                                toast.error("Failed to add")
                             
                             }
 

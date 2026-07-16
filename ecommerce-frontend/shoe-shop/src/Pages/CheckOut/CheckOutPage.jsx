@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs'
+import toast from 'react-hot-toast';
 //
 import { CheckOutHeader } from '../Components/Headers/CheckOutHeader';
 import { PaymentSummary } from './PaymentSummary'
@@ -41,9 +42,11 @@ export function CheckOutPage({ cart, loadCart }) {
                             const removeToCart = async () => {
                                 try {
                                     await axios.delete(`https://my-shoe-store-backend.onrender.com/api/cart-items/${cartItem.productId}`);
+                                    toast.success("Item removed from Bag")
                                     await loadCart();
                                 } catch (error) {
                                     console.error(`Error removing from cart : ${error}`)
+                                    toast.error("Failed to remove")
                                 }
 
                             }

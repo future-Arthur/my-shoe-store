@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import { moneyFormat } from '../../Utils/moneyFormat';
 import {Devider} from '../Components/Devider';
 
@@ -27,10 +28,12 @@ export function PaymentSummary({ cart, loadCart }) {
     const placeOrder = async () => {
         try{
              await axios.post('https://my-shoe-store-backend.onrender.com/api/orders')
+             toast.success("Order placed")
              await loadCart();
              navigate('/orders')
         }catch(error){
             console.error(`error placing Order : ${error}`)
+            toast.error("Failed to place order")
         }
        
        

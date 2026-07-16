@@ -1,32 +1,34 @@
 
 import axios from 'axios';
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
-export function AddToWishList({product,loadWishList, wishListIds}) {
+export function AddToWishList({ product, loadWishList, wishListIds }) {
 
-    const[isWished, setIsWished] = useState(wishListIds.includes(product.id));
+    const [isWished, setIsWished] = useState(wishListIds.includes(product.id));
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsWished(wishListIds.includes(product.id))
-    },[wishListIds, product.id])
+    }, [wishListIds, product.id])
 
     const addToWishList = async () => {
-        try{
-              if (isWished) {
-            await axios.delete(`https://my-shoe-store-backend.onrender.com/api/wishlist/${product.id}`)
-            await setIsWished(false);
-        } else {
-            await axios.post('https://my-shoe-store-backend.onrender.com/api/wishlist', {
-                productId: product.id
-            })
-            await setIsWished(true)
+        try {
+            if (isWished) {
+                await axios.delete(`https://my-shoe-store-backend.onrender.com/api/wishlist/${product.id}`)
+                await setIsWished(false);
+            } else {
+                await axios.post('https://my-shoe-store-backend.onrender.com/api/wishlist', {
+                    productId: product.id
+                })
+                await setIsWished(true)
+            }
+            toast.success("Added to wishlist")
+            await loadWishList();
+        } catch (error) {
+            console.error(`Error updating wishlist : ${error}`)
+            toast.error("Failed to add to wishlist")
         }
 
-        await loadWishList();
-        } catch(error){
-        console.error(`Error updating wishlist : ${error}`)
-        }
-      
     }
 
     return (
