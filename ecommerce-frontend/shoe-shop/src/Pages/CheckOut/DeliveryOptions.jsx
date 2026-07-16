@@ -3,7 +3,7 @@ import axios from 'axios'
 import dayjs from 'dayjs';
 import { moneyFormat } from '../../Utils/moneyFormat';
 
-export function DeliveryOptions({deliveryOptions, cartItem, loadCart}) {
+export function DeliveryOptions({ deliveryOptions, cartItem, loadCart }) {
 
     return (
         <div className="grid gap-[10px]">
@@ -14,24 +14,20 @@ export function DeliveryOptions({deliveryOptions, cartItem, loadCart}) {
                 if (option.priceCents > 0) {
                     stringShipping = (`${moneyFormat(option.priceCents)} - Shipping `)
                 }
-                
-                const updateDeliveryOption = async () =>{
-                    await axios.put(`/api/cart-items/${cartItem.productId}`,{
-                        deliveryOptionId : option.id
+
+                const updateDeliveryOption = async () => {
+                    await axios.put(`/api/cart-items/${cartItem.productId}`, {
+                        deliveryOptionId: option.id
                     })
                     await loadCart();
-
                 }
 
                 return (
                     <div key={option.id} className="flex cursor-pointer"
-                        onClick ={updateDeliveryOption}>
+                        onClick={updateDeliveryOption}>
 
-                        <input type="radio" 
-                            checked={option.id === cartItem.deliveryOptionId}
-                            onChange={()=>{}}
-                            name={`delivery-option-${cartItem.productId}`}
-                             />
+                        <input type="radio" checked={option.id === cartItem.deliveryOptionId}
+                            onChange={() => { }} name={`delivery-option-${cartItem.productId}`} />
 
                         <div className="ml-3">
                             <div className="font-bold">

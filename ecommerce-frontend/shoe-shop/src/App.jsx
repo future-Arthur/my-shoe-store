@@ -25,7 +25,6 @@ function App() {
   const loadWishList = async () => {
     const response = await axios.get('/api/wishlist?expand=product')
     setWishList(response.data)
-    console.log(response.data)
   }
 
   useEffect(() => {
