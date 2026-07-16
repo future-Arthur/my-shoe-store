@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import {categorys} from '../../../constant/Categorys'
 import { calculateCartQuantity } from '../../../Utils/calculateCartQuantity'
 
 export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
@@ -14,9 +15,7 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
         setSearch(input)
         if (setOnSearch) {
             setOnSearch(input)
-
         }
-
     }
     const handleSearchSubmit = (event) => {
         navigate('/products')
@@ -25,7 +24,6 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
         if (setOnSearch) {
             setOnSearch(search)
         }
-
     }
 
     return (
@@ -33,16 +31,25 @@ export function Header({ cart, setOnSearch,setSelectedCategory,wishList }) {
             <div className="flex justify-start items-center gap-2 ">
                 <Link className="flex items-center gap-2 cursor-pointer" to="/">
                     <img className="w-15 h-15 rounded-[50%]" src="/images/icons/shoeLog.jpg" />
-                    <span className="text-[35px] text-white font-bold ">SHOE'S<span className="text-brand-gold">HOP</span></span>
+                    <span className="text-[35px] text-white font-bold ">SHOE'S
+                        <span className="text-brand-gold">HOP</span>
+                    </span>
                 </Link>
             </div>
 
             <div className={`${isMenuOpen? "flex justify-between" : "hidden"}   md:flex md:max-gap-2 xl:gap-80 p-5`}>
                 <div className="flex text-white gap-10 items-center md:hidden lg:flex lg:gap-20 xl:gap-30">
-                    <Link to="/products"><button className="cursor-pointer" onClick={() => { setSelectedCategory('All') }}>FEATURED</button></Link>
-                    <Link to="/products"><button className="cursor-pointer" onClick={() => { setSelectedCategory('Mens') }}>MENS</button></Link>
-                    <Link to="/products"><button className="cursor-pointer" onClick={() => { setSelectedCategory('Womens') }}>WOMENS</button></Link>
-                    <Link to="/products"><button className="cursor-pointer" onClick={() => { setSelectedCategory('Kids') }}>KIDS</button></Link>
+
+                    {categorys.map((category)=>{
+                        return(
+                            <Link key ={category.id} to="/products">
+                                <button className="cursor-pointer" 
+                                    onClick={() => { setSelectedCategory(category.value) }}>{category.label}
+                                </button>
+                            </Link>
+                        )
+                    })}
+              
                 </div>
             </div>
 
