@@ -45,7 +45,7 @@ export function ProductsPage({ cart, loadCart, onSearch, setOnSearch, selectedCa
     return (
         <>
             <Header cart={cart} setOnSearch={setOnSearch} setSelectedCategory={setSelectedCategory} wishList={wishList} />
-            <Toaster />
+   
 
             <div className=" bg-brand-medwhite grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-5 font-body 
                 overflow-x-hidden text-brand-navy mb-20 md:mb-50 lg:mb-130">
